@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 oct. 2010 20:52:20 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping package="com.gencore.backend.java.entity" default-access="field" default-lazy="false">
+     <class name="GPSLocation" table="T_GPSLOCATION">
+             
+        <id name="id" column="ID" type="java.lang.Long">
+  			<generator class="native" />
+  		</id>
+  		<property name="lattitude" type="java.lang.Double">
+            <column name="LATTITUDE" />
+        </property>
+        <property name="longitude" type="java.lang.Double">
+            <column name="LONGITUDE" />
+        </property>
+        <property name="altitude">
+            <column name="ALTITUDE" />
+        </property>  
+        <property name="acquisitionDate" type="java.util.Date">
+            <column name="ACQUISITION_DATE" />
+        </property> 
+         
+        <many-to-one name="course" column="COURSE" class="Course" cascade="persist,merge,save-update" /> 
+
+    </class>
+</hibernate-mapping>

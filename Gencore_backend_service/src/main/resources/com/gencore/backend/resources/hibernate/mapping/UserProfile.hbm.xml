@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.gencore.backend.java.entity" default-access="field" default-lazy="false">
+ <typedef name="languageEnum" class="com.gencore.backend.java.utils.GenericEnumUserType">
+        <param name="enumClass">com.gencore.backend.java.domain.Language</param>
+        <param name="identifierMethod">toInt</param>
+        <param name="valueOfMethod">fromInt</param>     
+ </typedef>
+ 
+ <class name="UserProfile" table="T_USER">
+  
+  <id name="id" column="ID">
+  	<generator class="native" />
+  </id>
+  
+  <property name="login" column="LOGIN" unique="true"/>
+  <property name="email" column="EMAIL" unique="true"/>
+  
+  <property name="password">
+  	<column name="PASSWORD" sql-type="BLOB"/>
+  </property>
+  <property name="enabled" column="ENABLED"/>
+  <property name="firstName" column="FIRSTNAME"/>
+  <property name="lastName" column="LASTNAME"/>
+  
+  
+<!--  <property name="language" column="LANGUAGE"/>-->
+  <property name="language" type="languageEnum">
+       <column name="LANGUAGE" not-null="true" />
+  </property>
+  
+  
+  <property name="creationDate" column="CREATION_DATE"/>
+  <property name="lastAccessDate" column="LASTACCESS_DATE"/>
+  <property name="locked" column="LOCKED"/>
+
+  <many-to-one name="role" column="ROLE_ID" class="UserRole" cascade="persist,merge,save-update" /> 
+
+<!--  <property name="photo" type="longblog" column="PHOTO"/>-->
+  
+  <property name="photo" type="byte[]">
+ 	<column name="PHOTO" sql-type="binary" length="16777216"/>
+ </property>
+
+  
+ </class>
+</hibernate-mapping>

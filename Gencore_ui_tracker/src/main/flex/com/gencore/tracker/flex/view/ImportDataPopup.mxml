@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="400" height="300"
+			   creationComplete="onInit()"
+			   close="closeHandler(event)">
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			private var _fileReference : FileReference;
+			
+			private function onInit():void {
+				
+				_fileReference = new FileReference();
+				
+				// Standard Listeners
+				_fileReference.addEventListener(Event.SELECT, _onFileSelect);
+				// Error Listeners
+				_fileReference.addEventListener(SecurityErrorEvent.SECURITY_ERROR, _onUploadFault);
+				_fileReference.addEventListener(HTTPStatusEvent.HTTP_STATUS, _onUploadFault);
+				_fileReference.addEventListener(IOErrorEvent.IO_ERROR, _onUploadFault);
+			}
+			
+			private function _onUploadFault(event : Event) : void {
+				trace("there was an issue with the upload");
+			}
+			
+			private function _onFileSelect(event : Event) : void {
+				_fileReference.addEventListener(Event.COMPLETE, onFileLoaded);
+				_fileReference.load();
+			}
+			
+			
+			private function onFileLoaded(e : Event) : void {
+			}
+			
+			
+			private function _onUploadRequest(event : MouseEvent) : void {
+				// Let's use an MP3 only fileFilter
+				var onlyExtension : FileFilter = new FileFilter("Only *.gpx", "*.gpx");
+				// Display the file-selector dialog with a limited selection of only mp3
+				_fileReference.browse([ onlyExtension ]);
+			}
+			
+			
+			protected function closeHandler(event : Event) : void {
+				PopUpManager.removePopUp(this);
+			}
+			
+			
+			
+		]]>
+	</fx:Script>
+	
+	
+</s:TitleWindow>

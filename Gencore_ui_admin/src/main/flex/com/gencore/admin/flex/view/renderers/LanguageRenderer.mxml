@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"
+		 creationComplete="init()">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.assets.ConstIcons;
+			import com.gencore.commons.flex.vo.CourseVO;
+			import com.gencore.commons.flex.vo.UserProfileVO;
+
+			private function init():void{
+						
+				var language:String = (this.data as UserProfileVO).language;
+						
+				switch (language) {
+					
+					case 'fr_FR':
+						languageIcon.source  = ConstIcons.FRIcon;
+						break;
+					case 'en_US':
+						languageIcon.source  = ConstIcons.UKIcon;
+						break;
+				}
+			} 
+		]]>
+	</fx:Script>
+		
+    <s:HGroup horizontalAlign="center" width="100%" height="100%">
+		<mx:Image id="languageIcon"/>
+	</s:HGroup>
+	
+	
+</s:MXDataGridItemRenderer>
+

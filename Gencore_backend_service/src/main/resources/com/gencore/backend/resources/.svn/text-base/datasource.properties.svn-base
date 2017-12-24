@@ -1,0 +1,15 @@
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.databaseName=gencore_db
+jdbc.url=jdbc:mysql://localhost:3306
+#jdbc.url=jdbc:mysql://localhost:3306/gencore_db
+jdbc.username=root
+jdbc.password=malili011004
+
+# Utilisé seulement pour la configuration Hibernate
+hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+
+#Mail
+mail.host=smtp.gmail.com
+mail.port=25
+mail.username=joseph.luccisano
+mail.password=malili011004

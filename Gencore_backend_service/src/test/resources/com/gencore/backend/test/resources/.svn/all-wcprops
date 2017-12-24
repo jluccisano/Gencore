@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/GenerixCore/!svn/ver/309/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources
+END
+gencore_schema.sql
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/gencore_schema.sql
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/GenerixCore/!svn/ver/305/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/log4j.properties
+END
+test.properties
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/GenerixCore/!svn/ver/304/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/test.properties
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/templates
+END
+registrationTemplate_FR.html
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/templates/registrationTemplate_FR.html
+END
+registrationTemplate_US.html
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/templates/registrationTemplate_US.html
+END
+forgotPasswordTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/templates/forgotPasswordTemplate.html
+END
+Servlet.html
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/templates/Servlet.html
+END

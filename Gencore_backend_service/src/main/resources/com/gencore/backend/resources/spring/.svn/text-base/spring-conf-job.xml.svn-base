@@ -1,0 +1,38 @@
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+							 			
+	<bean id="quartzService" class="com.gencore.backend.java.job.QuartzServiceImpl"/>
+
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	  <property name="targetObject" ref="quartzService"/>
+	  <property name="targetMethod" value="doIt"/>
+	</bean>
+
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+<!--	   see the example of method invoking job above -->
+	  <property name="jobDetail" ref="jobDetail"/>
+<!--		 10 seconds -->
+	  <property name="startDelay" value="10000"/>
+<!--		 repeat every 50 seconds -->
+	  <property name="repeatInterval" value="150000"/>
+	</bean>
+
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	  <property name="jobDetail" ref="jobDetail"/>
+<!--		 run every morning at 6 AM -->
+	  <property name="cronExpression" value="0 0 6 * * ?"/>
+	</bean>
+	
+<!--	-->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	  <property name="triggers">
+	    <list>
+<!--	      <ref bean="cronTrigger"/>-->
+	      <ref bean="simpleTrigger"/>
+	    </list>
+	  </property>
+	</bean>
+							
+</beans>

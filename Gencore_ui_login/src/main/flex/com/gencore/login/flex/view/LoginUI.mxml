@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="onInit()"
+		 xmlns:mediator="com.frontend.simba.modules.login.view.mediator.*" 
+		 xmlns:validator="validator.*" 
+		 xmlns:string="validator.string.*" 
+		 xmlns:email="validator.email.*" 
+		 xmlns:mediator1="org.lucciframework.luccimvc.view.mediator.*" 
+		 xmlns:validator1="org.lucciframework.validator.*" 
+		 xmlns:string1="org.lucciframework.validator.string.*" 
+		 xmlns:email1="org.lucciframework.validator.email.*"
+		 width="100%" height="100%" xmlns:components="com.gencore.commons.flex.components.*" >
+	<fx:Declarations>
+		<mediator1:MediatorReference id="loginMediator" 
+									 mediatorName="loginMediator"
+									 componentName="loginUI"
+									 facadeRef="loginFacade" />
+		
+		<validator1:Validators id="validators_connection">
+			<validator1:dataProvider>
+				<string1:LucciStringValidator dataToValidate="{login_ti.text}" 
+											  target="{login_ti}" required="true"/>
+				<string1:LucciStringValidator dataToValidate="{password_ti.text}" 
+											  target="{password_ti}" required="true"/>
+			</validator1:dataProvider>
+		</validator1:Validators>
+		
+		<!--<validator1:Validators id="validators_email">
+			<validator1:dataProvider>
+				<email1:LucciEmailValidator dataToValidate="{email_ti.text}"
+											target="{email_ti}"/>
+			</validator1:dataProvider>
+		</validator1:Validators>-->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[			
+			import com.gencore.assets.ConstIcons;
+			import com.gencore.commons.flex.manager.GencoreModuleManager;
+			import com.gencore.commons.flex.model.MainModel;
+			import com.gencore.commons.flex.vo.UserProfileVO;
+			import com.gencore.login.flex.view.mediator.LoginMediator;
+			
+			import mx.core.FlexGlobals;
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.BrowserManager;
+			import mx.managers.IBrowserManager;
+			import mx.managers.PopUpManager;
+			import mx.resources.ResourceManager;
+			
+			import org.lucciframework.luccimvc.facade.Facade;
+			
+	
+			
+			[Bindable]
+			private var login : String;
+			[Bindable]
+			private var password : String;
+			//[Bindable]
+			//private var email : String;
+			
+			private var mediator : LoginMediator;
+			
+			[Bindable]
+			private var model : MainModel = MainModel.instance;
+			
+			[Bindable] public var moduleManager : GencoreModuleManager = GencoreModuleManager.instance;
+
+			
+			private function onInit () : void {
+				
+				mediator = loginMediator.mediator as LoginMediator;
+				//var browserManager:IBrowserManager = BrowserManager.getInstance();
+				//browserManager.setFragment("/login");
+				
+			}
+			
+			private function initFields () : void {
+				login_ti.text = "";
+				password_ti.text = "";
+				//email_ti.text = "";
+			}
+			
+			/*private function redirect()  : void {
+				navigateToURL(new URLRequest(resourceManager.getString('gencore_login','gencore.login.module.redirectUrl')),'_self');
+			}*/
+			
+			/*private function sendEmail() : void {
+				
+				
+				if ( !validators_email.checkValidator() )
+				{		
+					this.currentState = 'STATE_EMAIL_SENT';
+					this.mediator.forgotPassword( this.email );
+				} 
+				
+			}*/
+			
+			private function getConnection () : void {
+				
+				if(login_ti.currentState == "STATE_VIEW"){
+					this.login_ti.text = "";
+				}
+				
+				if(password_ti.currentState == "STATE_VIEW"){
+					this.password_ti.text = "";
+				}
+				
+				if ( !validators_connection.checkValidator() )
+				{		
+					this.mediator.getConnection( this.login , this.password );
+					
+					this.login_ti.text = "";
+					this.password_ti.text = "";
+				} 
+			}
+			
+			private function checkPassword () : void {
+				//bad_credentials_lbl.visible = false;
+			}
+			
+			private function forgotPassword () : void {
+				
+				var forgotPasswordPopup:ForgotPasswordPopup = new ForgotPasswordPopup();
+				
+				var main:DisplayObject = FlexGlobals.topLevelApplication as DisplayObject;
+				forgotPasswordPopup.x = (main.width - forgotPasswordPopup.width) / 2;
+				forgotPasswordPopup.y = (main.height - forgotPasswordPopup.height) / 2;
+				
+				//var forgotPasswordPopup:IFlexDisplayObject = PopUpManager.createPopUp(FlexGlobals.topLevelApplication as DisplayObject,ForgotPasswordPopup,true);
+				
+				PopUpManager.addPopUp(forgotPasswordPopup,this,true);
+			}
+			
+			protected function clickHandler(event:MouseEvent):void
+			{
+				
+				moduleManager.unloadModule(MainModel.TRACKER_MODULE);
+				Facade.removeCore("trackerFacade");
+				moduleManager.loadModule(MainModel.HOME_MODULE);
+				this.currentState = "STATE_LOGIN";
+				ResourceManager.getInstance().localeChain = ['en_US'];
+				
+				//Envoyer une déconnexiion spring security
+				
+				
+				//model.connected = false;
+				
+			}
+		
+			protected function showUser(event:MouseEvent):void
+			{
+
+				var userPopup:UserPopup = new UserPopup();
+				userPopup.currentUser = model.userConnected;
+				userPopup.currentState = UserPopup.STATE_VIEW;
+				
+				var main:DisplayObject = FlexGlobals.topLevelApplication as DisplayObject;
+				userPopup.x = (main.width - userPopup.width) / 2;
+				userPopup.y = (main.height - userPopup.height) / 2;
+				
+				PopUpManager.addPopUp(userPopup,this,true);
+				
+			}
+			
+			protected function register (event:MouseEvent) : void {
+				
+
+				
+				var userPopup:UserPopup = new UserPopup();
+				userPopup.currentUser = new UserProfileVO();
+				userPopup.currentState = UserPopup.STATE_CREATE;
+				
+				var main:DisplayObject = FlexGlobals.topLevelApplication as DisplayObject;
+				userPopup.x = (main.width - userPopup.width) / 2;
+				userPopup.y = (main.height - userPopup.height) / 2;
+				
+				PopUpManager.addPopUp(userPopup,this,true);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="STATE_LOGIN" />
+		<s:State name="STATE_CONNECTED"/>
+	</s:states>
+	
+	<s:transitions>
+		<!--<s:Transition fromState="STATE_LOGIN"> 
+			<s:Parallel> 
+				<mx:Resize target="{this}" duration="350"/> 
+				<s:Wipe direction="right" target="{forgotPassord_fi}"/> 
+			</s:Parallel> 
+		</s:Transition> -->
+		
+		<!--<s:Transition fromState="STATE_FORGOT_PASSWORD"> 
+			<s:Parallel> 
+				<mx:Resize target="{this}" duration="150"/> 
+				<s:Wipe direction="right" target="{emailSent_fi}"/> 
+			</s:Parallel> 
+		</s:Transition> -->
+		
+		<s:Transition fromState="STATE_EMAIL_SENT"> 
+			<s:Parallel> 
+				<mx:Resize target="{this}" duration="150"/> 
+			</s:Parallel> 
+		</s:Transition> 
+		
+	</s:transitions>
+	
+	<s:layout>
+		<s:HorizontalLayout  horizontalAlign="right" />
+	</s:layout>
+	
+	<mx:Spacer width="100%"/>
+	
+<!--	<mx:Spacer height="40%"/>-->
+	
+<!--	<s:VGroup width="100%" height="100%" horizontalAlign="center">-->
+		
+		<!--<mx:Form defaultButton="{submit_bt}" includeIn="STATE_LOGIN" direction="ltr" >-->
+	
+	<s:Group includeIn="STATE_LOGIN">
+		
+			<s:layout>
+				<s:VerticalLayout/>
+			</s:layout>
+			
+			<s:Group>
+				
+				<s:layout>
+					<s:HorizontalLayout  horizontalAlign="right"/>
+				</s:layout>
+				
+				<!--<s:TextInput id="login_ti" width="100" text="@{this.login}" excludeFrom="STATE_CONNECTED" />-->
+				<components:CustomTextInput id="login_ti" width="100" text="@{this.login}" excludeFrom="STATE_CONNECTED"
+											defaultText="{resourceManager.getString('gencore_login','gencore.login.module.login')}"/>
+				<!--<s:TextInput id="password_ti" width="100" displayAsPassword="true" text="@{this.password}"
+							 change="{checkPassword()}" enter="getConnection()"/>-->
+				<components:CustomTextInput id="password_ti" width="100" displayAsPassword="true" text="@{this.password}"
+							 change="{checkPassword()}" enter="getConnection()"
+							 defaultText="{resourceManager.getString('gencore_login','gencore.login.module.password')}"/>
+				
+				<s:Button id="submit_bt" label="{resourceManager.getString('gencore_login','gencore.login.module.submit')}"
+						  click="getConnection()" excludeFrom="STATE_CONNECTED" 
+						  buttonMode="true" width="50"/>
+				
+			</s:Group>
+		
+			<s:Group>
+				
+				<s:layout>
+					<s:HorizontalLayout  horizontalAlign="right"/>
+				</s:layout>
+				
+				<mx:LinkButton label="{resourceManager.getString('gencore_login','gencore.login.module.register')}"
+							   color="white" 
+							   click="register(event)"
+							   textDecoration="underline"  />
+				
+				<mx:LinkButton label="{resourceManager.getString('gencore_login','gencore.login.module.forgotpass')}"
+							   color="white" 
+							   click="forgotPassword()"
+							   textDecoration="underline"  />	
+			</s:Group>
+	</s:Group>
+		
+
+	<s:Group includeIn="STATE_CONNECTED">
+		
+		<s:layout>
+			<s:HorizontalLayout/>
+		</s:layout>
+		
+		<mx:Image id="photo_img" source="{(model.userConnected.photo == null) ? ConstIcons.userPhotSmallIcon : model.userConnected.photo}" width="45" height="45"
+				  scaleX="0.7" scaleY="0.7"/>
+
+		
+		<mx:LinkButton label="{model.userConnected.firstName + ' ' + model.userConnected.lastName}"
+					   color="white" 
+					   textDecoration="underline"
+					   click="showUser(event)"/>
+		
+		<mx:LinkButton label="logout"  
+					   color="white" 
+					   textDecoration="underline"
+					   click="clickHandler(event)"/>
+	</s:Group>
+	
+	
+
+
+		<!--</mx:Form>-->
+		
+		<!--	<s:HGroup horizontalAlign="right" width="100%">
+				
+				<s:Label id="bad_credentials_lbl" color="red"
+						 text="{resourceManager.getString('gencore_login','gencore.login.module.badcredentials')}" visible="false"/>
+				
+			</s:HGroup>-->
+			
+			<!--<mx:Spacer height="15"/>-->
+			
+			<!--<s:HGroup >-->
+				
+
+				
+				<!--<s:Button label="{resourceManager.getString('gencore_login','gencore.login.module.cancel')}" click="redirect()"/>-->
+				
+				
+
+				
+				
+			<!--</s:HGroup>-->
+			
+	
+		
+<!--		<mx:Form defaultButton="{send_bt}" includeIn="STATE_FORGOT_PASSWORD" itemCreationPolicy="immediate" >
+			
+			<mx:FormItem id="forgotPassord_fi" label="{resourceManager.getString('gencore_login','gencore.login.module.submityouremail')}" 
+						 direction="horizontal" >
+				
+				<s:TextInput id="email_ti" width="200" text="@{this.email}"/>
+				
+			</mx:FormItem>
+			
+			<mx:FormItem direction="horizontal">
+				<s:Button label="{resourceManager.getString('gencore_login','gencore.login.module.cancel')}"
+						  click="redirect()" />
+				
+				<s:Button id="send_bt" 
+						  label="{resourceManager.getString('gencore_login','gencore.login.module.send')}"
+						  click="sendEmail()"/>
+			</mx:FormItem>
+			
+		</mx:Form>-->
+		
+<!--		<mx:Form defaultButton="{submit_bt}" includeIn="STATE_EMAIL_SENT" >
+			
+			<mx:FormItem id="emailSent_fi" label="{resourceManager.getString('gencore_login','gencore.login.module.emailsent')}" 
+						 direction="vertical">
+				
+				<mx:LinkButton label="{resourceManager.getString('gencore_login','gencore.login.module.backtologin')}"
+							   color="0x3380DD" labelPlacement="bottom"
+							   click="{this.currentState = 'STATE_LOGIN';initFields()}"
+							   textDecoration="underline" />
+				
+			</mx:FormItem>
+			
+		</mx:Form>-->
+		
+	<!--</s:VGroup>	-->
+	
+</s:Group>

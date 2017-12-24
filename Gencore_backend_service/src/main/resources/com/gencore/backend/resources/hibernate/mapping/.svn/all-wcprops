@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/hibernate/mapping
+END
+Device.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/GenerixCore/!svn/ver/350/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/hibernate/mapping/Device.hbm.xml
+END
+UserProfile.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/hibernate/mapping/UserProfile.hbm.xml
+END
+Course.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/hibernate/mapping/Course.hbm.xml
+END
+UserRole.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/hibernate/mapping/UserRole.hbm.xml
+END
+CourseType.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/hibernate/mapping/CourseType.hbm.xml
+END
+GPSLocation.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/GenerixCore/!svn/ver/348/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/hibernate/mapping/GPSLocation.hbm.xml
+END

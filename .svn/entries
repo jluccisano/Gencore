@@ -1,0 +1,61 @@
+10
+
+dir
+401
+http://svn2.xp-dev.com/svn/GenerixCore/trunk
+http://svn2.xp-dev.com/svn/GenerixCore
+
+
+
+2010-12-29T11:35:28.533334Z
+401
+jluccisano
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c80faf80-8990-410c-9a66-30067309a14f
+
+Gencore_ui_portal
+dir
+
+Gencore_portal
+dir
+
+Gencore_assets
+dir
+
+Gencore_ui_admin
+dir
+
+Gencore_ui_home
+dir
+
+Gencore_ui_login
+dir
+
+Gencore_backend_service
+dir
+
+Gencore_embedded_jetty
+dir
+
+Gencore_ui_commons
+dir
+
+Gencore_ui_tracker
+dir
+
+Gencore_mobile_bb
+dir
+

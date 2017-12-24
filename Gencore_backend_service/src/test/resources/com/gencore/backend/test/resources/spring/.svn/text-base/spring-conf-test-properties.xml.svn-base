@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer">
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="ignoreUnresolvablePlaceholders" value="false"/>
+        <property name="searchSystemEnvironment" value="false"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="localOverride" value="false"/>
+        <property name="contextOverride" value="false"/>
+        <property name="searchContextAttributes" value="false"/>
+        <property name="locations">
+            <list>
+            
+            	<!--  First The prod config -->
+            	<value>classpath:/com/gencore/backend/resources/datasource.properties</value>
+                <value>classpath:/com/gencore/backend/resources/hibernate.properties</value>                
+                
+                <!--  Define for the dev, If these file exist then the config above
+                is overrided by belows -->
+                <value>classpath:/com/gencore/backend/test/resources/test.properties</value>              
+            </list>
+        </property>
+    </bean>
+    
+</beans>

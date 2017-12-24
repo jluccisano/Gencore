@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    	
+	<!-- Pooled data source -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"><value>${jdbc.driverClassName}</value></property>
+		<property name="url"><value>${jdbc.url}/${jdbc.databaseName}</value></property>
+		<property name="username"><value>${jdbc.username}</value></property>
+		<property name="password"><value>${jdbc.password}</value></property>
+		<property name="initialSize" value="5" />
+		<property name="maxActive" value="10" />
+		<property name="maxIdle" value="5" />
+		<property name="maxWait" value="30000" />
+		<property name="validationQuery" value="SELECT 1" />
+		<property name="testOnBorrow" value="true" />
+		<property name="testWhileIdle" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="1000" />
+		<property name="minEvictableIdleTimeMillis" value="60000" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="60" />
+		<property name="logAbandoned" value="true" />
+	</bean>
+	
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:com/gencore/backend/resources/hibernate/mapping/UserProfile.hbm.xml</value>
+				<value>classpath:com/gencore/backend/resources/hibernate/mapping/UserRole.hbm.xml</value>
+				<value>classpath:com/gencore/backend/resources/hibernate/mapping/GPSLocation.hbm.xml</value>
+				<value>classpath:com/gencore/backend/resources/hibernate/mapping/Course.hbm.xml</value>
+				<value>classpath:com/gencore/backend/resources/hibernate/mapping/Device.hbm.xml</value>
+				<value>classpath:com/gencore/backend/resources/hibernate/mapping/CourseType.hbm.xml</value>
+			</list>
+		</property>
+	
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+				<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+				<prop key="hibernate.default_batch_fetch_size">${hibernate.default_batch_fetch_size}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+				<prop key="hibernate.jdbc.batch_versioned_data">${hibernate.jdbc.batch_versioned_data}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.bytecode.provider">${hibernate.bytecode.provider}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+			</props>
+		</property>
+	</bean> 
+			
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="simpleDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		 <property name="driverClassName"><value>${jdbc.driverClassName}</value></property>
+		 <property name="url"><value>${jdbc.url}/${jdbc.databaseName}</value></property>
+		 <property name="username"><value>${jdbc.username}</value></property>
+		 <property name="password"><value>${jdbc.password}</value></property>
+ 	</bean>
+</beans>

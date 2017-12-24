@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/spring
+END
+spring-conf-test.xml
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/spring/spring-conf-test.xml
+END
+spring-conf-test-properties.xml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/spring/spring-conf-test-properties.xml
+END

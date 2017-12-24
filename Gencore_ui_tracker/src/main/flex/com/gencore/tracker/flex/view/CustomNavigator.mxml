@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	
+	<fx:Metadata>
+		[Event(name="enableChanged", type="flash.events.Event")]
+	</fx:Metadata>
+
+	
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.assets.ConstIcons;
+			import com.gencore.commons.flex.vo.CourseVO;
+			
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var _courseProvider:ArrayCollection;
+			
+			[Bindable]
+			public var currentCourse:CourseVO;
+			
+			[Bindable]
+			private var _currentIndex:int;
+			
+			
+			public function set courseProvider ( value:ArrayCollection) : void {
+				
+				if (value != null) {
+					_courseProvider = value;
+					
+					_currentIndex = _courseProvider.length - 1;
+					currentCourse = _courseProvider.getItemAt(_currentIndex) as CourseVO;
+					dispatchEvent(new Event("enableChanged"));
+				}
+				
+			}
+			
+			
+			private function onPrevious () : void {
+				
+				if(_currentIndex > 0 ) {
+					_currentIndex--;
+					currentCourse = _courseProvider.getItemAt(_currentIndex) as CourseVO;
+					dispatchEvent(new Event("enableChanged"));
+
+				}
+			}
+			
+			private function onNext () : void {
+				
+				if(_currentIndex < _courseProvider.length - 1) {
+					_currentIndex++;
+					currentCourse = _courseProvider.getItemAt(_currentIndex) as CourseVO;
+					dispatchEvent(new Event("enableChanged"));
+				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	
+
+	<s:layout>
+		<s:HorizontalLayout horizontalAlign="center" />
+	</s:layout>
+	
+	<mx:Image source="{ConstIcons.previousIcon}" click="onPrevious()" buttonMode="true"/>
+	
+	<s:Label id="current_lbl" text="{_currentIndex + 1}"/>
+	
+	<s:Label text="/"/>
+	
+	<s:Label id="total_lbl" text="{_courseProvider.length}"/>
+	
+	<mx:Image source="{ConstIcons.nextIcon}" click="onNext()" buttonMode="true"/>
+	
+	
+	
+</s:Group>

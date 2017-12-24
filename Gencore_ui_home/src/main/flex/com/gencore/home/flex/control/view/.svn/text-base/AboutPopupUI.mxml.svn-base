@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 title="{resourceManager.getString('i18n','gencore.portal.about')}"
+		 width="300" height="170">
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.commons.flex.model.MainModel;
+			
+			import mx.managers.PopUpManager;
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" paddingTop="20"/>
+	</s:layout>
+	
+	<s:Group>
+		
+	
+	
+	    <s:layout>
+			<s:VerticalLayout horizontalAlign="center" paddingTop="20"/>
+		</s:layout>
+		
+		<mx:FormItem label="{resourceManager.getString('i18n','gencore.portal.version') + ':'}">
+			<s:Label text="{MainModel.VERSION}"
+					 fontWeight="bold"/>
+		</mx:FormItem>
+		
+		<s:HGroup horizontalAlign="center">
+			<s:Button label="{resourceManager.getString('i18n','gencore.portal.button.ok')}"
+					  click="{PopUpManager.removePopUp(this)}"/>
+		</s:HGroup>
+
+
+	</s:Group>
+	
+	
+</s:TitleWindow>

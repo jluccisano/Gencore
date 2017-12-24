@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build_embedded_jetty">
+
+	<!-- Load property file-->
+	<property environment="env"/>
+	<property file="build.properties"/>
+	
+	<import file="${env.GENTOOLS_HOME}/build_commons.xml"/>
+	
+	<import file="${env.GENTOOLS_HOME}/build_java_commons.xml"/>
+	
+	<import file="${env.GENTOOLS_HOME}/build_db.xml"/>
+	
+	<target name="install" depends="init_build,build_executable_jar" description="--> Compile backend service"/>
+	 
+	<target name="install-env" description="--> Installation des .project">
+		<antcall target="eclipse:install-project"> 
+			<param name="svn.project.name" value="Gencore_backend_service"/> 
+			<param name="type" value="java_project"/> 
+	   </antcall>
+	</target>
+	
+	<target name="create-db-test" description="--> Create test database">
+		
+		<property file="./test/com/gencore/test/resources/test.properties"/>
+		<antcall target="create-schema">
+			<param name="url" value="${jdbc.url}"/>
+			<param name="userid" value="${jdbc.username}"/>
+			<param name="password" value="${jdbc.password}"/>
+			<param name="src" value="${script.schema.src}"/>
+			<param name="driver" value="${jdbc.driverClassName}"/>
+		</antcall>		
+	</target>
+	
+
+	
+
+</project>

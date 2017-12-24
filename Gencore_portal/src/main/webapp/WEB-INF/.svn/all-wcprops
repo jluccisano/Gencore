@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/GenerixCore/!svn/ver/386/trunk/Gencore_portal/src/main/webapp/WEB-INF
+END
+gencore-ws-servlet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/GenerixCore/!svn/ver/338/trunk/Gencore_portal/src/main/webapp/WEB-INF/gencore-ws-servlet.xml
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/GenerixCore/!svn/ver/370/trunk/Gencore_portal/src/main/webapp/WEB-INF/log4j.properties
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/GenerixCore/!svn/ver/386/trunk/Gencore_portal/src/main/webapp/WEB-INF/web.xml
+END
+logo_16x16.ico
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/GenerixCore/!svn/ver/239/trunk/Gencore_portal/src/main/webapp/WEB-INF/logo_16x16.ico
+END

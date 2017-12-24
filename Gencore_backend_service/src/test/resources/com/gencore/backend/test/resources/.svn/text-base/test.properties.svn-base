@@ -1,0 +1,18 @@
+#Put your dev database config
+jdbc.databaseName=gencore_db_test
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306
+jdbc.username=root
+jdbc.password=password
+
+script.schema.src=src/test/resources/com/gencore/backend/test/resources/gencore_schema.sql
+	
+#Put the hibernate config for the dev
+hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+
+#Mail
+mail.host=smtp.gmail.com
+mail.port=25
+mail.username=joseph.luccisano
+mail.password=malili011004
+

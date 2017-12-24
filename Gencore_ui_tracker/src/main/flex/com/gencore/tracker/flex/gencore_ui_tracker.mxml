@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" 
+		   layout="absolute"
+		   width="100%" height="100%" 
+		   preinitialize="module1_preinitializeHandler(event)"
+		   xmlns:facade="org.lucciframework.luccimvc.facade.*" 
+		   xmlns:business="org.lucciframework.luccimvc.business.*" 
+		   xmlns:command="org.lucciframework.luccimvc.controller.command.*" 
+		   xmlns:mediator="org.lucciframework.luccimvc.view.mediator.*"
+		   xmlns:local="*" 
+		   xmlns:mediator2="com.gencore.tracker.flex.view.mediator.*" xmlns:view="com.gencore.tracker.flex.view.*">
+	
+	<fx:Metadata>
+		[ResourceBundle('gencore')]
+		[ResourceBundle('gencore_tracker')]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<facade:Facade facadeRef="trackerFacade" debug="true">
+			
+			<!-- Business -->
+			<facade:services>
+				<business:RegisterService serviceClass="{TrackerServices}"/>
+			</facade:services>
+			
+			<!-- Controller -->
+			<facade:commands>
+				<command:RegisterCommand eventType="{TrackerEvent.GET_COURSES_EVENT}"
+										 commandClass="{GetCoursesOfUserCommand}"/>
+				<command:RegisterCommand eventType="{TrackerEvent.GET_COURSE_EVENT}"
+										 commandClass="{GetCourseByIdCommand}"/>
+			</facade:commands>
+			
+			<!-- View -->
+			<facade:mediators>
+				<mediator:RegisterMediator mediatorName="trackerMediator"
+										   mediatorClass="{TrackerMediator}"/>
+			</facade:mediators>
+			
+			
+		</facade:Facade>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.tracker.flex.business.TrackerServices;
+			import com.gencore.tracker.flex.control.command.GetCourseByIdCommand;
+			import com.gencore.tracker.flex.control.command.GetCoursesOfUserCommand;
+			import com.gencore.tracker.flex.control.event.TrackerEvent;
+			import com.gencore.tracker.flex.view.mediator.TrackerMediator;
+			
+			import mx.events.FlexEvent;
+			
+
+
+			protected function module1_preinitializeHandler(event:FlexEvent):void
+			{
+				this.parentApplication.percentWidth = 100;
+				this.parentApplication.percentHeight = 100;
+			}
+
+		]]>
+	</fx:Script>
+	
+	<mx:VBox width="100%" height="100%">
+		<mx:LinkBar color="0x0050AA" horizontalAlign="center" width="100%" fontWeight="bold" dataProvider="{myViewStack}" borderColor="0xACACAC" borderStyle="solid"/>
+		
+		<!-- Define the ViewStack and the three child containers -->
+		<mx:ViewStack id="myViewStack" borderStyle="solid" width="100%" height="100%" color="0x323232">
+			
+			<s:NavigatorContent id="dashboard" width="100%" height="100%" label="Dashboard" backgroundColor="0xDCDCDC" fontWeight="bold">
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="center" />
+				</s:layout>
+				<s:VGroup width="100%" height="100%">
+					<view:DashboardUI width="100%" height="100%"/>
+				</s:VGroup>
+			</s:NavigatorContent>	
+			
+			<s:NavigatorContent id="workouts" width="100%" height="100%" label="My Workouts" backgroundColor="0xDCDCDC" fontWeight="bold">
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="center" />
+				</s:layout>
+				<s:VGroup width="100%" height="100%">
+					<view:TrackerUI width="100%" height="100%"/>
+				</s:VGroup>
+			</s:NavigatorContent>		
+		</mx:ViewStack>
+	</mx:VBox>
+
+	
+	
+
+</mx:Module>
+

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build_gencore_portal">
+	
+	<!-- Load property file-->
+	<property environment="env"/>
+	<property file="build.properties"/>
+	 
+	<import file="${env.GENTOOLS_HOME}/build_commons.xml"/>
+	
+	<import file="${env.GENTOOLS_HOME}/build_flex_commons.xml"/>
+	<import file="${env.GENTOOLS_HOME}/build_java_commons.xml"/>
+	<import file="${env.GENTOOLS_HOME}/build_tomcat.xml"/>
+	
+	
+	<target name="install_prod" depends="init_build,init_web_project,build_gencore_portal" description="--> intall to prod">
+	    <antcall target="build_custom_wrapper">
+		  	<param name="endpoint" value="${prod.endpoint}"/>
+	    	<param name="gmapskey" value="${prod.gmapskey}"/>
+	 	</antcall>
+		<antcall target="war"/>
+		<antcall target="create_war_test"/>	
+	    <antcall target="web_project_test"/>
+		
+	   <!-- <antcall target="undeploy">
+	    	<param name="tomcat.manager.url" value="${prod.tomcat.manager.url}"/>
+	 	</antcall>
+	    <antcall target="deploy">
+	    	<param name="tomcat.manager.url" value="${prod.tomcat.manager.url}"/>
+	 	</antcall>-->
+	</target>
+	
+	<target name="install_dmz" depends="init_build,init_web_project,build_gencore_portal" description="--> Install to dmz">
+	    <antcall target="build_custom_wrapper">
+		  	<param name="endpoint" value="${dmz.endpoint}"/>
+	    	<param name="gmapskey" value="${dmz.gmapskey}"/>
+	 	</antcall>
+		<antcall target="war"/>
+		<antcall target="create_war_test"/>	
+		<antcall target="web_project_test"/>	
+		
+	   <!-- <antcall target="undeploy">
+	    	<param name="tomcat.manager.url" value="${dmz.tomcat.manager.url}"/>
+	 	</antcall>
+	    <antcall target="deploy">
+	    	<param name="tomcat.manager.url" value="${dmz.tomcat.manager.url}"/>
+	 	</antcall>-->
+	</target>
+	
+	<target name="install_local" depends="init_build,init_web_project,build_gencore_portal" description="--> Install to local">
+	    <antcall target="build_custom_wrapper">
+		  	<param name="endpoint" value="${local.endpoint}"/>
+	    	<param name="gmapskey" value="${local.gmapskey}"/>
+	 	</antcall>
+		<antcall target="war"/>
+		
+		<antcall target="create_war_test"/>	
+		<antcall target="web_project_test"/>		
+	</target>
+	
+	<target name="create_war_test">
+ 		<antcall target="build_custom_wrapper">
+		  	<param name="endpoint" value="${test.endpoint}"/>
+	    	<param name="gmapskey" value="${local.gmapskey}"/>
+	 	</antcall>
+		<antcall target="war_test"/>
+	</target>
+		
+		
+	
+	<!-- ================================= 
+	          target: build_flex_modules            
+	      ================================= -->
+	<target name="build_gencore_portal" depends="resolve,build_java_web_project"  description="--> flex compile all modules">		
+
+		<copy todir="${bin.release.dir}/WEB-INF/classes">
+		    <fileset dir="${java.compile.temp.dir}">
+		    </fileset>
+		</copy> 
+		
+		<copy todir="${bin.release.dir}">
+		    <fileset dir="${bin.release.dir}/flex">
+		    	<include name="*.swf"/>
+		    	<include name="*.swc"/>
+		    </fileset>
+		</copy> 
+		
+		<!--<delete dir="${bin.release.dir}/flex" />-->
+
+	</target>
+
+	<!-- ================================= 
+	          target: init             
+	    ================================= -->
+	<target name="init_web_project" description="--> init">
+			
+		 	<mkdir dir="${build.web.inf}/classes"/>
+		    <mkdir dir="${build.web.inf}/lib"/>
+			
+		 	<copy todir="${bin.release.dir}">
+		 		<fileset dir="${web.content}">
+		 			<include name="META-INF/**"/>
+		 		</fileset>
+		    </copy> 
+		
+		    <copy todir="${build.web.inf}">
+		    	<fileset dir="${web.inf}">
+		    		<include name="*.*"/>
+		    	</fileset>
+		    </copy>
+
+			<copy todir="${build.web.inf}/flex">
+			    <fileset dir="${web.inf}/flex"/>
+		    </copy>
+		
+			<copy todir="${bin.release.dir}/assets">
+		    	<fileset dir="${web.content}/assets"/>
+	    	</copy>
+
+		 	<copy todir="${bin.release.dir}">
+				<fileset dir="${web.content}">
+					<include name="crossdomain.xml*"/>
+				</fileset>
+		    </copy> 
+		
+			<copy todir="${bin.release.dir}"  >
+			    <fileset dir="${FLEX_HOME}\frameworks\rsls">
+			    	<include name="*.swf"/>
+			    </fileset>
+			</copy> 
+			
+		</target>
+	
+	<target name="install-env" description="--> Installation des .project">
+		<antcall target="eclipse:install-project"> 
+			<param name="svn.project.name" value="Gencore_portal"/> 
+			<param name="type" value="java_web_project"/> 
+	   </antcall>
+	</target>
+	
+	<target name="deploy_war" description="--> Deploy Webapp">
+		<antcall target="deploy"> 
+			<param name="tomcat.manager.url" value="${dmz.tomcat.manager.url}"/>
+	   </antcall>
+	</target>
+	
+	
+	
+	
+	
+
+
+</project>

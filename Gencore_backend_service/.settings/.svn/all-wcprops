@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/.settings
+END
+org.eclipse.jdt.core.prefs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/.settings/org.eclipse.jdt.core.prefs
+END
+net.rim.browser.tools.debug.widget.prefs
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/.settings/net.rim.browser.tools.debug.widget.prefs
+END
+org.eclipse.ltk.core.refactoring.prefs
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/.settings/org.eclipse.ltk.core.refactoring.prefs
+END

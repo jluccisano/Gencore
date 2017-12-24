@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb
+END
+StartTrackingResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/StartTrackingResponse.java
+END
+GPSLocationArray.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/GPSLocationArray.java
+END
+StopTrackingRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/StopTrackingRequest.java
+END
+RegisterDeviceResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/RegisterDeviceResponse.java
+END
+GPSLocationType.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/GPSLocationType.java
+END
+SendGPSLocationRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/SendGPSLocationRequest.java
+END
+StopTrackingResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/StopTrackingResponse.java
+END
+StartTrackingRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/StartTrackingRequest.java
+END
+GPSTrackingService_Stub.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/GPSTrackingService_Stub.java
+END
+GPSTrackingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/GPSTrackingService.java
+END
+RegisterDeviceRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/GenerixCore/!svn/ver/340/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/bb/RegisterDeviceRequest.java
+END

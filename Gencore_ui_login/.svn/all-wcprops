@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/GenerixCore/!svn/ver/399/trunk/Gencore_ui_login
+END
+ivy.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/GenerixCore/!svn/ver/358/trunk/Gencore_ui_login/ivy.xml
+END
+monkeyTestProject.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/GenerixCore/!svn/ver/236/trunk/Gencore_ui_login/monkeyTestProject.xml
+END
+.flexProperties
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/GenerixCore/!svn/ver/236/trunk/Gencore_ui_login/.flexProperties
+END
+build.properties
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/GenerixCore/!svn/ver/300/trunk/Gencore_ui_login/build.properties
+END
+.actionScriptProperties
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/GenerixCore/!svn/ver/332/trunk/Gencore_ui_login/.actionScriptProperties
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/GenerixCore/!svn/ver/358/trunk/Gencore_ui_login/build.xml
+END
+monkeyTestSuites.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/GenerixCore/!svn/ver/236/trunk/Gencore_ui_login/monkeyTestSuites.xml
+END

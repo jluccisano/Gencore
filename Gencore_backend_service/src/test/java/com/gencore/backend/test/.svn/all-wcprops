@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test
+END
+BackendTestSuite.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/BackendTestSuite.java
+END
+BaseTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/GenerixCore/!svn/ver/285/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/BaseTest.java
+END
+InsertInitDataTestSuite.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/InsertInitDataTestSuite.java
+END
+AbstractGetData.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/AbstractGetData.java
+END
+UserProfileInitData.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/UserProfileInitData.java
+END
+UserRoleInitData.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/GenerixCore/!svn/ver/307/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/UserRoleInitData.java
+END

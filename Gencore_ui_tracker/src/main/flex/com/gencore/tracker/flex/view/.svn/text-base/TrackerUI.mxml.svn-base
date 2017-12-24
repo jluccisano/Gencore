@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="100%" height="100%" xmlns:mediator="org.lucciframework.luccimvc.view.mediator.*"
+    initialize="onInit()" xmlns:view="com.gencore.tracker.flex.view.*" xmlns:maps="com.google.maps.*">
+    <fx:Declarations>
+        <mediator:MediatorReference id="trackerMediator" mediatorName="trackerMediator" componentName="trackerUI"
+            facadeRef="trackerFacade" />
+
+        <mx:DateFormatter id="dateFormatter" formatString="L:NN:SS" />
+        <mx:DateFormatter id="dateFormatter2" formatString="YYYY/MM/DD LL:NN:SS" />
+    </fx:Declarations>
+
+
+    <fx:Script>
+        <![CDATA[
+			import com.gencore.commons.flex.utils.GPSUtils;
+			import com.gencore.commons.flex.vo.CourseVO;
+			import com.gencore.tracker.flex.view.mediator.TrackerMediator;
+
+            [Bindable] private var mediator : TrackerMediator;
+
+
+            [Bindable] public var currentCourse : CourseVO;
+
+
+            private function onInit() : void {
+                this.mediator = trackerMediator.mediator as TrackerMediator;
+
+                //this.mediator.getCoursesOfUser();
+            }
+
+
+            public function handleEnableChangeEvent(event : Event) : void {
+                //var courseId:String=ComboBox(event.target).selectedItem[0];
+                var nav : CustomNavigator = event.currentTarget as CustomNavigator;
+                this.mediator.getCourseById(nav.currentCourse.courseId);
+            }
+
+
+            public function loadMaps() : void {
+				this.maps2D.onMapReady();
+/* 				
+				var millisecondsPerMinute:int = 1000*60;
+
+				var time : Number = this.currentCourse.endDate.getTime() - this.currentCourse.startDate.getTime();
+				duration_lbl.text = GPSUtils.convertMillisecondsToHHMMSS(this.currentCourse.endDate.getTime() - this.currentCourse.startDate.getTime());
+
+				var minByKm : Date = new Date((this.currentCourse.kmAverage * millisecondsPerMinute) + (millisecondsPerMinute*60*60));
+				avgkm_lbl.text = dateFormatter.format(minByKm) + ' min/km';
+
+ */
+				
+            }
+			
+		
+        ]]>
+    </fx:Script>
+
+
+
+    <s:layout>
+        <s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10"
+            paddingBottom="10" />
+    </s:layout>
+
+
+    <s:Group width="40%" height="100%">
+
+        <s:layout>
+            <s:VerticalLayout />
+        </s:layout>
+
+        <s:Group width="100%">
+
+            <s:layout>
+                <s:HorizontalLayout horizontalAlign="left" />
+            </s:layout>
+
+            <view:CustomNavigator id="customNavigator" courseProvider="{this.mediator.courses}" enableChanged="handleEnableChangeEvent(event);"
+                width="100%" height="10%" />
+
+            <mx:Label id="endDate" text="{dateFormatter2.format(this.currentCourse.endDate)}" fontWeight="bold"
+                fontSize="16" />
+        </s:Group>
+
+        <mx:Form>
+            <mx:FormItem id="distance_fi" label="distance: ">
+                <s:Label id="distance_lbl" text="{this.currentCourse.distance.toPrecision(3) + ' km'}" fontWeight="bold" />
+            </mx:FormItem>
+            <mx:FormItem id="duration_fi" label="duration: ">
+                <s:Label id="duration_lbl" text="{GPSUtils.convertMillisecondsToHHMMSS(this.currentCourse.endDate.getTime() - this.currentCourse.startDate.getTime())}" />
+            </mx:FormItem>
+            <mx:FormItem id="avgkm_fi" label="Avg km: ">
+                <s:Label id="avgkm_lbl" text="{GPSUtils.convertMillisecondsToHHMMSS(this.currentCourse.kmAverage * GPSUtils.millisecondsPerMinute)}" />
+            </mx:FormItem>
+            <mx:FormItem id="speed_fi" label="Avg speed: ">
+                <s:Label id="speed_lbl" text="{this.currentCourse.speedAverage.toPrecision(3) + ' km/h'}" />
+            </mx:FormItem>
+        </mx:Form>
+
+
+        <mx:TabNavigator id="tn" width="100%" height="100%"
+            color="0x323232">
+            <!-- Define each panel using a VBox container. -->
+
+            <s:NavigatorContent label="Elevation" width="100%" height="100%">
+                <s:layout>
+                    <s:HorizontalLayout horizontalAlign="center" paddingLeft="10" paddingRight="10"
+                        paddingTop="10" paddingBottom="10" />
+                </s:layout>
+                <mx:LineChart id="linechart" color="0x323232" height="100%"
+                    showDataTips="true" dataProvider="{currentCourse.gpsLocations}">
+
+                    <mx:horizontalAxis>
+                        <mx:LinearAxis minimum="0" />
+                    </mx:horizontalAxis>
+
+                    <mx:series>
+                        <mx:LineSeries yField="altitude" form="curve" displayName="Elevation" />
+                    </mx:series>
+                </mx:LineChart>
+
+                <mx:Legend dataProvider="{linechart}" color="0x323232" />
+            </s:NavigatorContent>
+
+           <!-- <s:NavigatorContent label="Panel 2">
+                <s:Label text="TabNavigator container panel 2" />
+            </s:NavigatorContent>
+
+            <s:NavigatorContent label="Panel 3">
+                <s:Label text="TabNavigator container panel 3" />
+            </s:NavigatorContent>-->
+        </mx:TabNavigator>
+
+
+    </s:Group>
+
+
+
+
+    <mx:TabNavigator id="maps_tn" width="60%" height="100%"
+        color="0x323232">
+
+        <s:NavigatorContent label="2D">
+            <!--<s:Panel title="tracking maps" width="60%" height="100%">-->
+            <s:SkinnableContainer skinClass="com.gencore.tracker.flex.view.skins.GmapsContainerSkin" width="100%" height="100%"
+                horizontalCenter="0" verticalCenter="0">
+
+				<view:Maps2D id="maps2D" width="100%" height="100%"
+							 currentCourse="{currentCourse}"/>
+
+            </s:SkinnableContainer>
+        </s:NavigatorContent>
+
+    </mx:TabNavigator>
+
+
+
+    <!-- </s:Panel>-->
+
+</s:Group>

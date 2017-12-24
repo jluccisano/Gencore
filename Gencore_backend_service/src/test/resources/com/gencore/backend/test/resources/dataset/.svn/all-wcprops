@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/GenerixCore/!svn/ver/306/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/dataset
+END
+UserProfileDataSet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/GenerixCore/!svn/ver/306/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/dataset/UserProfileDataSet.xml
+END
+UserRoleDataSet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/GenerixCore/!svn/ver/306/trunk/Gencore_backend_service/src/test/resources/com/gencore/backend/test/resources/dataset/UserRoleDataSet.xml
+END

@@ -1,0 +1,40 @@
+project.version=0.1
+project.name=Gencore_portal
+
+web.content=src/main/webapp
+web.inf=${web.content}/WEB-INF
+meta.inf=${web.content}/META-INF
+
+ivy.status=integration
+ivy.retrieve.path=${web.inf}/lib
+module=gencore_portal
+gentools.home=${env.GENTOOLS_HOME}
+#Ivy properties
+ivy.organisation=com.gencore
+ivy.module=gencore_portal
+ivy.status=integration
+ivy.revision=${project_version}
+ivy.pubrevision=${project_version}
+ivy.type=swf
+ivy.resolver=ivysvn_war
+#Path where the .jar or .swc are compiled
+ivy.artifactspattern=build/dist/[artifact].[ext]
+#Path where dependencies are located
+ivy.retrieve.path=build/bin-release/WEB-INF/lib
+ivy.retrieve.flex.path=build/bin-release/flex
+
+jar.dest.dir=build/bin-release/WEB-INF/lib
+
+#Flex properties
+flex.src.dir=flex_src
+flex.libs.dir=libs
+flex.locale.us=en_US
+flex.locale.dir=locale
+
+#Java properties
+java.dest.dir=${build.web.inf}/classes
+
+
+
+
+

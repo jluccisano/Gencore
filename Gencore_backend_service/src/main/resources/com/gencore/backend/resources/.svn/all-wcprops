@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources
+END
+datasource.properties
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/datasource.properties
+END
+hibernate.properties
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/hibernate.properties
+END

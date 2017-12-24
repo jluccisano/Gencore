@@ -1,0 +1,9 @@
+K 10
+svn:ignore
+V 30
+libs
+.project
+build
+flex_libs
+
+END

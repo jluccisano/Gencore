@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="570" 
+	width.STATE_CREATE="470"
+	height="350" 
+	height.STATE_CHANGE_PASSWORD="350"
+    xmlns:validator="validator.*" xmlns:string="validator.string.*" xmlns:email="validator.email.*"
+    xmlns:mediator="com.frontend.simba.modules.admin.view.mediator.*" xmlns:combo="validator.combo.*" creationComplete="creationCompleteHandler(event)"
+    title.STATE_CREATE="{resourceManager.getString('gencore_login','gencore.login.module.newaccount')}" title="{this.currentUser.firstName + ' ' + this.currentUser.lastName}" xmlns:mediator1="org.lucciframework.luccimvc.view.mediator.*"
+    xmlns:validator1="org.lucciframework.validator.*" xmlns:combo1="org.lucciframework.validator.combo.*" xmlns:string1="org.lucciframework.validator.string.*"
+    xmlns:email1="org.lucciframework.validator.email.*" close="closeHandler(event)">
+
+    <fx:Declarations>
+        <mediator1:MediatorReference id="mediatorRef" mediatorName="userMediator" componentName="userUI"
+            facadeRef="loginFacade" />
+
+        <validator1:Validators id="validators">
+            <validator1:dataProvider>
+                <string1:LucciStringValidator dataToValidate="{firstName_ti.text}" target="{firstName_ti}" required="true" />
+                <string1:LucciStringValidator dataToValidate="{lastName_ti.text}" target="{lastName_ti}" required="true" />
+                <email1:LucciEmailValidator dataToValidate="{email_ti.text}" target="{email_ti}" required="true" />
+                <combo1:LucciComboBoxValidator target="{lang_cb}" required="true" />
+                <string1:LucciStringValidator dataToValidate="{newPassword_ti.text}" includeIn="STATE_CREATE" target="{newPassword_ti}"
+                    minLength="6" required="true" />
+                <string1:LucciStringValidator dataToValidate="{login_ti.text}" includeIn="STATE_CREATE" target="{login_ti}"
+                    required="true" />
+            </validator1:dataProvider>
+        </validator1:Validators>
+
+        <validator1:Validators id="password_validators">
+            <validator1:dataProvider>
+                <string1:LucciStringValidator includeIn="STATE_CHANGE_PASSWORD" dataToValidate="{actualPassword_ti.text}" target="{actualPassword_ti}"
+                    minLength="6" />
+                <string1:LucciStringValidator includeIn="STATE_CHANGE_PASSWORD" dataToValidate="{newPassword_ti.text}" target="{newPassword_ti}"
+                    minLength="6" />
+                <string1:LucciStringValidator includeIn="STATE_CHANGE_PASSWORD" dataToValidate="{confirmedPassword_ti.text}" target="{confirmedPassword_ti}"
+                    minLength="6" />
+            </validator1:dataProvider>
+        </validator1:Validators>
+
+
+
+    </fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[
+			import com.gencore.assets.ConstIcons;
+			import com.gencore.commons.flex.enums.Language;
+			import com.gencore.commons.flex.model.MainModel;
+			import com.gencore.commons.flex.vo.UserProfileVO;
+			import com.gencore.login.flex.view.mediator.UserMediator;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			import spark.primitives.BitmapImage;
+
+
+            public static var STATE_VIEW : String = "STATE_VIEW";
+            public static var STATE_CREATE : String = "STATE_CREATE";
+            public static var STATE_MODIFY : String = "STATE_MODIFY";
+            public static var STATE_CHANGE_PASSWORD : String = "STATE_CHANGE_PASSWORD";
+
+            [Bindable] private var _currentUser : UserProfileVO;
+
+            [Bindable] private var actualPassword : String;
+            [Bindable] private var newPassword : String;
+
+            private var _fileReference : FileReference;
+
+            private var userMediator : UserMediator;
+
+            [Bindable] public function get currentUser() : UserProfileVO {
+                return _currentUser;
+            }
+
+            public function set currentUser(value : UserProfileVO) : void {
+                _currentUser = value;
+            }
+
+
+            protected function creationCompleteHandler(event : FlexEvent) : void {
+                userMediator = mediatorRef.mediator as UserMediator;
+
+                //email_confirm_ti.addEventListener(TextEvent.TEXT_INPUT, textInputKeyDownEventHandler);
+                //confirmedPassword_ti.addEventListener(KeyboardEvent.KEY_DOWN, textInputKeyDownEventHandler);
+
+                _fileReference = new FileReference();
+
+                // Standard Listeners
+                _fileReference.addEventListener(Event.SELECT, _onFileSelect);
+                // Error Listeners
+                _fileReference.addEventListener(SecurityErrorEvent.SECURITY_ERROR, _onUploadFault);
+                _fileReference.addEventListener(HTTPStatusEvent.HTTP_STATUS, _onUploadFault);
+                _fileReference.addEventListener(IOErrorEvent.IO_ERROR, _onUploadFault);
+            }
+
+            private function _onUploadFault(event : Event) : void {
+                trace("there was an issue with the upload");
+            }
+
+            private function _onFileSelect(event : Event) : void {
+                //Checker la taille maximale
+
+                _fileReference.addEventListener(Event.COMPLETE, onFileLoaded);
+                _fileReference.load();
+            }
+
+
+            private function onFileLoaded(e : Event) : void {
+				this.userMediator.compressImage(e.target.data);
+                //photo_img.source = e.target.data;
+                //photo_img.width = 96;
+                //photo_img.height = 111;
+            /*  var loader:Loader = new Loader();
+               loader.contentLoaderInfo.addEventListener(Event.COMPLETE, convertBitmap);
+             loader.loadBytes(e.target.data); */
+
+            }
+
+
+            private function _onUploadRequest(event : MouseEvent) : void {
+                // Let's use an MP3 only fileFilter
+                var onlyImage : FileFilter = new FileFilter("Only Image *.jpg , *.gif , *.png ", "*.jpg;*.gif;*.png");
+                // Display the file-selector dialog with a limited selection of only mp3
+                _fileReference.browse([ onlyImage ]);
+            }
+
+
+            protected function closeHandler(event : Event) : void {
+                PopUpManager.removePopUp(this);
+            }
+
+            private function save() : void {
+
+                if (!validators.checkValidator()) {
+
+
+                    this.currentUser.firstName = this.firstName_ti.text;
+                    this.currentUser.lastName = this.lastName_ti.text;
+                    this.currentUser.language = lang_cb.selectedItem.language;
+                    this.currentUser.login = login_ti.text;
+
+
+
+                    if (email_confirm_ti.text == email_ti.text) {
+                        this.currentUser.email = this.email_ti.text;
+                    } else {
+                        email_confirm_ti.errorString =
+                            resourceManager.getString('i18n', 'gencore.portal.emailDifferent');
+                    }
+
+                    if (confirmedPassword_ti.text == newPassword_ti.text) {
+                        this.currentUser.password = this.newPassword_ti.text;
+                    } else {
+                        confirmedPassword_ti.errorString =
+                            resourceManager.getString('i18n', 'gencore.portal.passwordDifferent');
+                    }
+
+                    if (validEmailIcon.visible == true && validIcon.visible == true) {
+                        userMediator.registrationUser(this.currentUser);
+                    }
+
+                }
+            }
+
+            private function modify() : void {
+                if (!(validators.checkValidator() && password_validators.checkValidator())) {
+                    var data : Object = null;
+
+                    this.currentUser.email = this.email_ti.text;
+                    this.currentUser.firstName = this.firstName_ti.text;
+                    this.currentUser.lastName = this.lastName_ti.text;
+
+                    //TODO si la photo est vide bien mettre null et pas enregistrer betement l'image
+                    //par défaut
+                    //this.currentUser.photo = (this.photo_bitmap.source as Bitmap).loaderInfo.bytes;
+                    this.currentUser.photo = this.photo.source as ByteArray;
+
+
+                    if (this.currentState == UserPopup.STATE_CHANGE_PASSWORD) {
+                        if (confirmedPassword_ti.text == newPassword_ti.text) {
+
+                            data = new Object();
+                            data["actualPassword"] = this.actualPassword;
+                            data["newPassword"] = this.newPassword;
+                            userMediator.updateUser(this.currentUser, data);
+
+                        } else {
+                            confirmedPassword_ti.errorString =
+                                resourceManager.getString('i18n', 'gencore.portal.passwordDifferent');
+                        }
+
+                    } else if (this.currentState == UserPopup.STATE_MODIFY) {
+                        userMediator.updateUser(this.currentUser, null);
+                    }
+
+                }
+            }
+
+            private function changeState(state : String) : void {
+                this.currentState = state;
+            }
+
+            private function checkConfirmPassword() : void {
+                confirmedPassword_ti.errorString = "";
+                if (confirmedPassword_ti.text == newPassword_ti.text && confirmedPassword_ti.text.length >= 6) {
+                    validIcon.visible = true;
+                } else {
+                    validIcon.visible = false;
+                }
+            }
+
+            private function checkConfirmEmail() : void {
+                email_confirm_ti.errorString = "";
+                if (email_confirm_ti.text == email_ti.text) {
+                    validEmailIcon.visible = true;
+                } else {
+                    validEmailIcon.visible = false;
+                }
+            }
+
+            private function displayLanguage(item : Object) : String {
+
+                var temp : String
+                switch (item.language) {
+                    case Language.FR:
+                        {
+                            temp = resourceManager.getString('i18n', 'gencore.portal.fr');
+                            break;
+                        }
+
+                    case Language.US:
+                        {
+                            temp = resourceManager.getString('i18n', 'gencore.portal.uk');
+                            break;
+                        }
+                }
+                return temp;
+            }
+
+
+            /* 	 private function convertBitmap(event:Event):void
+               {
+
+               var MAX_WIDTH:Number = 90;
+               var MAX_HEIGHT:Number = 90;
+
+               var bmd:BitmapData = Bitmap(event.currentTarget.content).bitmapData;
+               var convertingImage:BitmapData;
+
+               var originalWidth:Number = bmd.width;
+               var originalHeight:Number = bmd.height;
+               var newWidth:Number = originalWidth;
+               var newHeight:Number = originalHeight;
+
+               var m:Matrix = new Matrix();
+
+               var scaleX:Number = 1;
+               var scaleY:Number = 1;
+
+               var sx:Number;
+               var sy:Number;
+
+               if (originalWidth > MAX_WIDTH || originalHeight > MAX_HEIGHT)
+               {
+               sx =  MAX_WIDTH / originalWidth;
+               sy = MAX_HEIGHT / originalHeight;
+               var scale:Number = Math.min(sx, sy);
+               newWidth = originalWidth * scale;
+               newHeight = originalHeight * scale;
+               }
+               m.scale(scale, scale);
+
+
+               convertingImage = new BitmapData( newWidth,newHeight);
+               convertingImage.draw(bmd,m);
+
+               photo_bitmap.source = new Bitmap(convertingImage);
+
+             }  */
+
+            private function textInputKeyDownEventHandler(ev : TextEvent) : void {
+                /*
+                   Check to see if the right combinations of buttons are
+                   pressed.
+                   and ensure the text input is a password field.
+                 */
+               // if (ev.ctrlKey == true && ev.keyCode == 17) {
+                    /*
+                       This ensures the events normal behaviour of sending
+                       the information to
+                       the textInput is destroyed - we handle the rest
+                       manually.
+
+                       Checking if the event is cancelable ensures we are
+                       allowed to
+                       stop is normal job, however this 'if' statement is
+                       redundant as
+                       if we could not prevent the defaut action, it would
+                       silently fail,
+                       I only added this for the understanding of what it
+                       tries to do.
+                     */
+                    if(ev.text.length > 1)
+                   {
+                   	 ev.preventDefault();
+                   }
+
+                    /*
+                       Kill the event dead. This stops the event from
+                       bubbling to the
+                       operating system, and effectivly kills the copy
+                       paste from
+                       ever happening. Previous clipboard information is
+                       left intact.
+                     */
+                   // ev.stopPropagation();
+               // }
+            }
+        ]]>
+    </fx:Script>
+
+
+
+    <s:states>
+        <s:State name="STATE_CREATE" />
+        <s:State name="STATE_VIEW" />
+        <s:State name="STATE_MODIFY" />
+        <s:State name="STATE_CHANGE_PASSWORD" />
+    </s:states>
+
+
+
+    <s:transitions>
+        <s:Transition fromState="STATE_VIEW">
+            <s:Parallel>
+                <mx:Resize target="{this}" duration="350" />
+                <s:Wipe direction="right" target="{actualPassword_fi}" />
+                <s:Wipe direction="right" target="{newPassword_fi}" />
+                <s:Wipe direction="right" target="{confirmedPassword_fi}" />
+            </s:Parallel>
+        </s:Transition>
+    </s:transitions>
+
+    <s:Group>
+
+        <s:layout>
+            <s:HorizontalLayout gap="20" paddingBottom="15" paddingTop="15"
+                paddingRight="15" paddingLeft="15" />
+        </s:layout>
+
+        <s:VGroup width="20%" height="100%" horizontalAlign="left">
+
+            <mx:FormItem id="photo_fi" direction="horizontal" includeIn="STATE_MODIFY,STATE_VIEW,STATE_CHANGE_PASSWORD">
+                <mx:Image id="photo" includeIn="STATE_MODIFY,STATE_MODIFY,STATE_VIEW,STATE_CHANGE_PASSWORD" width="90"
+                    height="90" source.STATE_VIEW="{(this.currentUser.photo != null) ? this.currentUser.photo : ConstIcons.userPhotoLargeIcon}" source.STATE_MODIFY="{(this.currentUser.photo != null) ? this.currentUser.photo : ConstIcons.userPhotoLargeIcon}"
+                    source.STATE_CHANGE_PASSWORD="{(this.currentUser.photo != null) ? this.currentUser.photo : ConstIcons.userPhotoLargeIcon}" />
+                <!--	<s:Group width="90" height="90" includeIn="STATE_CREATE,STATE_MODIFY,STATE_MODIFY,STATE_VIEW,STATE_CHANGE_PASSWORD">
+                     <s:BitmapImage id="photo_bitmap" source="{ConstIcons.userPhotoLargeIcon}" width="90" height="90" />
+                     <s:BitmapImage id="photo_bitmap"  includeIn="STATE_CREATE,STATE_MODIFY,STATE_MODIFY,STATE_VIEW,STATE_CHANGE_PASSWORD"
+                     source.STATE_CREATE="{ConstIcons.userPhotoLargeIcon}"
+                     width="90" height="90"
+                     source.STATE_VIEW="{(this.currentUser.photo != null) ? this.currentUser.photo : ConstIcons.userPhotoLargeIcon}"
+                     source.STATE_MODIFY="{(this.currentUser.photo != null) ? this.currentUser.photo : ConstIcons.userPhotoLargeIcon}"
+                     source.STATE_CHANGE_PASSWORD="{(this.currentUser.photo != null) ? this.currentUser.photo : ConstIcons.userPhotoLargeIcon}"/>
+                     </s:Group>-->
+
+                <mx:Image source="{ConstIcons.addIcon}" includeIn="STATE_MODIFY,STATE_CHANGE_PASSWORD" buttonMode="true"
+                    click="_onUploadRequest(event)" />
+            </mx:FormItem>
+
+            <s:Label text="Ajoutez votre photo" includeIn="STATE_MODIFY,STATE_CHANGE_PASSWORD" />
+
+        </s:VGroup>
+
+        <s:VGroup width="100%" height="100%" horizontalAlign="center">
+
+            <mx:Form defaultButton="{save_bt}">
+
+                <mx:FormItem id="firstName_fi" label="{resourceManager.getString('i18n','gencore.portal.firstName') + ' : '}">
+                    <s:TextInput id="firstName_ti" width="200" text="{this.currentUser.firstName}"
+                        enabled.STATE_VIEW="false" includeIn="STATE_CREATE,STATE_VIEW,STATE_MODIFY,STATE_CHANGE_PASSWORD" />
+                </mx:FormItem>
+
+                <mx:FormItem id="lastName_fi" label="{resourceManager.getString('i18n','gencore.portal.lastName') + ' : '}">
+                    <s:TextInput id="lastName_ti" width="200" text="{this.currentUser.lastName}"
+                        enabled.STATE_VIEW="false" includeIn="STATE_CREATE,STATE_VIEW,STATE_MODIFY,STATE_CHANGE_PASSWORD" />
+                </mx:FormItem>
+
+                <mx:FormItem id="email_fi" label="{resourceManager.getString('i18n','gencore.portal.email') + ' : '}">
+                    <s:TextInput id="email_ti" width="200" text="{this.currentUser.email}"
+                        enabled.STATE_VIEW="false" includeIn="STATE_CREATE,STATE_VIEW,STATE_MODIFY,STATE_CHANGE_PASSWORD" />
+                </mx:FormItem>
+
+                <mx:FormItem id="email_confirm_fi" includeIn="STATE_CREATE" label="{resourceManager.getString('i18n','gencore.portal.email.confirmation') + ' : '}"
+                    direction="horizontal">
+                    <s:TextInput id="email_confirm_ti" width="200" text="{this.currentUser.email}"
+                        enabled.STATE_VIEW="false" includeIn="STATE_CREATE" change="checkConfirmEmail()" />
+
+                    <mx:Image id="validEmailIcon" source="{ConstIcons.validIcon}" visible="false" />
+                </mx:FormItem>
+
+                <mx:FormItem id="lang_fi" label="{resourceManager.getString('i18n','gencore.portal.lang') + ' : '}">
+                    <s:DropDownList id="lang_cb" 
+									width="200" 
+								    enabled.STATE_VIEW="false"
+			                        prompt="{resourceManager.getString('i18n','gencore.portal.select.language')}" dataProvider="{Language.ENUM_LANGUAGE}"
+									labelField="language"
+			                        labelFunction="displayLanguage" 
+									selectedItem.STATE_VIEW="{this.currentUser.language}"
+									includeIn="STATE_CREATE,STATE_VIEW,STATE_MODIFY,STATE_CHANGE_PASSWORD" 
+									itemRenderer="com.gencore.login.flex.view.renderers.SelectLanguageRenderer">
+                        <s:layout>
+                            <s:VerticalLayout requestedRowCount="2" />
+                        </s:layout>
+
+                    </s:DropDownList>
+                </mx:FormItem>
+
+                <mx:LinkButton label="{resourceManager.getString('i18n','gencore.portal.changeCredentials')}" color="0x3380DD" labelPlacement="bottom"
+                    click="{this.currentState = 'STATE_CHANGE_PASSWORD'}" textDecoration="underline" includeIn="STATE_MODIFY" />
+
+                <mx:FormItem id="login_fi" includeIn="STATE_CREATE,STATE_CHANGE_PASSWORD" label="{resourceManager.getString('i18n','gencore.portal.login') + ' : '}">
+                    <s:TextInput id="login_ti" width="200" text="{this.currentUser.login}" />
+                </mx:FormItem>
+
+                <mx:FormItem id="actualPassword_fi" includeIn="STATE_CHANGE_PASSWORD" label="{resourceManager.getString('i18n','gencore.portal.actualPassword') + ' : '}">
+                    <s:TextInput id="actualPassword_ti" displayAsPassword="true" width="200"
+                        text="@{this.actualPassword}" />
+                </mx:FormItem>
+
+                <mx:FormItem id="newPassword_fi" includeIn="STATE_CREATE,STATE_CHANGE_PASSWORD" label="{resourceManager.getString('i18n','gencore.portal.newPassword') + ' : '}"
+                    label.STATE_CREATE="{resourceManager.getString('i18n','gencore.portal.password') + ' : '}">
+
+                    <s:TextInput id="newPassword_ti" displayAsPassword="true" width="200"
+                        text="@{this.newPassword}" />
+                </mx:FormItem>
+
+                <mx:FormItem id="confirmedPassword_fi" direction="horizontal" includeIn="STATE_CREATE,STATE_CHANGE_PASSWORD"
+                    label="{resourceManager.getString('i18n','gencore.portal.confirmPassword') + ' : '}">
+                    <s:TextInput id="confirmedPassword_ti" displayAsPassword="true" width="200"
+                        text="" change="checkConfirmPassword()" />
+                    <mx:Image id="validIcon" source="{ConstIcons.validIcon}" visible="false" />
+                </mx:FormItem>
+
+
+
+            </mx:Form>
+
+            <s:HGroup horizontalAlign="center">
+                <s:Button id="cancel_bt" label="{resourceManager.getString('i18n','gencore.portal.button.cancel')}" click.STATE_MODIFY="closeHandler(event)"
+                    click.STATE_CREATE="closeHandler(event)" click.STATE_CHANGE_PASSWORD="closeHandler(event)" label.STATE_VIEW="{resourceManager.getString('i18n','gencore.portal.button.modify')}"
+                    click.STATE_VIEW="changeState('STATE_MODIFY')" />
+
+                <s:Button id="save_bt" label="{resourceManager.getString('i18n','gencore.portal.button.save')}" click.STATE_CREATE="save()"
+                    click.STATE_MODIFY="modify()" click.STATE_CHANGE_PASSWORD="modify()" label.STATE_VIEW="{resourceManager.getString('i18n','gencore.portal.button.close')}"
+                    click.STATE_VIEW="closeHandler(event)" />
+            </s:HGroup>
+
+        </s:VGroup>
+
+    </s:Group>
+</s:TitleWindow>

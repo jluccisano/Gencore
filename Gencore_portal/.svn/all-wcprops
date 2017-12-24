@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/GenerixCore/!svn/ver/386/trunk/Gencore_portal
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/GenerixCore/!svn/ver/288/trunk/Gencore_portal/.classpath
+END
+ivy.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/GenerixCore/!svn/ver/386/trunk/Gencore_portal/ivy.xml
+END
+build.properties
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/GenerixCore/!svn/ver/263/trunk/Gencore_portal/build.properties
+END
+gencore_portal.launch
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/GenerixCore/!svn/ver/386/trunk/Gencore_portal/gencore_portal.launch
+END
+result.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/GenerixCore/!svn/ver/289/trunk/Gencore_portal/result.txt
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/GenerixCore/!svn/ver/338/trunk/Gencore_portal/build.xml
+END

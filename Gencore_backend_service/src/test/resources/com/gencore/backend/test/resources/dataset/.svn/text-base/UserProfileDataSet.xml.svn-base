@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+<T_USER ID="1" LOGIN="root" PASSWORD="password" FIRSTNAME="root" LASTNAME="Administrator" EMAIL="admin@gencore.com" LANGUAGE="fr" ENABLED="1" ROLE_ID="1"/>
+</dataset>

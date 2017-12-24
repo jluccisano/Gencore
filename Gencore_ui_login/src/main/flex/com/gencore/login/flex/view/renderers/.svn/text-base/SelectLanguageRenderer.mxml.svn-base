@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="100%" height="100%">
+
+    <fx:Script>
+        <![CDATA[
+			import com.gencore.assets.ConstIcons;
+			import com.gencore.commons.flex.enums.Language;
+
+            override public function set data(value : Object) : void {
+
+                super.data = value;
+
+                if (value == null)
+                    return;
+
+                switch (value.language) {
+
+                    case Language.FR:
+                        languageIcon.source = ConstIcons.FRIcon;
+                        languageName.text = resourceManager.getString('i18n', 'gencore.portal.fr');
+                        break;
+                    case Language.US:
+                        languageIcon.source = ConstIcons.UKIcon;
+                        languageName.text = resourceManager.getString('i18n', 'gencore.portal.uk');
+                        break;
+                }
+
+
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Group width="100%" height="100%">
+
+        <s:layout>
+            <s:HorizontalLayout paddingBottom="5" paddingLeft="5" paddingTop="5"
+                paddingRight="5" />
+        </s:layout>
+
+        <mx:Image id="languageIcon" />
+		
+		<s:Group>
+			<s:layout>
+				<s:VerticalLayout paddingTop="5"/>
+			</s:layout>
+			<s:Label id="languageName" width="100%" />
+		</s:Group>
+        
+    </s:Group>
+
+
+</s:ItemRenderer>
+

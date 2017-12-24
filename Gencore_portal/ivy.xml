@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one
+   or more contributor license agreements.  See the NOTICE file
+   distributed with this work for additional information
+   regarding copyright ownership.  The ASF licenses this file
+   to you under the Apache License, Version 2.0 (the
+   "License"); you may not use this file except in compliance
+   with the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied.  See the License for the
+   specific language governing permissions and limitations
+   under the License.    
+-->
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+    <info
+        organisation="com.gencore"
+        module="gencore_portal"
+        status="integration"
+        revision="0.1">
+	</info>
+	
+    <configurations>
+    
+        <conf name="compile" visibility="public"  transitive="false" description="Maven compile dependencies"/>
+        <conf name="runtime" extends="compile" visibility="public"  transitive="false" description="Runtime dependencies"/>
+    	<conf name="test"    extends="compile" visibility="public" transitive="false" description="Test dependencies"/>
+    	<conf name="mysql"   extends="runtime" visibility="private" transitive="false" description="Test dependencies"/>
+    	<conf name="jetty"   extends="compile" visibility="public" transitive="false" description="Test dependencies"/>
+    	<conf name="javadoc" visibility="private" transitive="false" description="Test dependencies"/>
+        <conf name="war" />
+      <!--  <conf name="default" extends="war" />
+        <conf name="compile" />
+        <conf name="runtime" />
+        <conf name="dev" />
+        <conf name="test" extends="compile,runtime" />
+      -->
+    </configurations>
+    
+    <publications>
+		 <artifact name="gencore_portal" type="war" ext="war" conf="war"/>
+	</publications>
+	
+    <dependencies>
+    
+     <dependency org="com.gencore" name="embedded_jetty" rev="0.1" transitive="false" conf="jetty,test,compile->test"/>
+     <dependency org="javax" name="javaee-api" rev="6.0" transitive="false" conf="runtime->default"/>
+     <dependency org="org.mortbay.jetty" name="jetty-util" rev="6.1.25" transitive="false" conf="jetty,test->default"/>
+	 <dependency org="org.mortbay.jetty" name="servlet-api" rev="3.0.20100224" transitive="false" conf="jetty,test->default"/>
+	 <dependency org="org.mortbay.jetty" name="jetty" rev="6.1.25" transitive="false" conf="jetty,test->default"/>
+       <!-- Local dependencies -->
+      <dependency org="com.gencore" name="gencore_backend_service" rev="[0.1,0.2)" transitive="false" conf="test,compile"/>
+      <dependency org="org.lucciframework" name="lucciMVC" rev="0.1"  conf="compile"/>
+	  <dependency org="org.lucciframework" name="lucciValidator" rev="0.1"  conf="compile"/>
+	  <dependency org="org.lucciframework.checkboxdatagrid" name="lucciCheckBoxDataGrid" rev="0.1"  conf="compile"/>
+	  <dependency org="com.gencore" name="gencore_ui_admin" rev="0.1"  conf="compile"/>
+	  <dependency org="com.gencore" name="gencore_ui_login" rev="0.1"  conf="compile"/>
+	  <dependency org="com.gencore" name="gencore_assets" rev="0.1"  conf="compile"/>
+	  <dependency org="com.gencore" name="gencore_ui_commons" rev="0.1"  conf="compile"/>
+	  <dependency org="com.gencore" name="gencore_ui_portal" rev="0.1"  conf="compile"/>
+	  <dependency org="com.gencore" name="gencore_ui_tracker" rev="0.1"  conf="compile"/>
+	  <dependency org="com.gencore" name="gencore_ui_home" rev="0.1"  conf="compile"/>
+       		 
+       
+       <!-- BlazeDS dependencies -->
+	   <dependency org="com.adobe.blazeds" name="blazeds-opt" rev="3.2.0.3978" transitive="false" conf="compile,runtime->default"/>
+	   <dependency org="com.adobe.blazeds" name="blazeds-core" rev="3.2.0.3978" transitive="false" conf="compile,runtime->default"/>
+	   <dependency org="com.adobe.blazeds" name="blazeds-proxy" rev="3.2.0.3978" transitive="false" conf="compile,runtime->default"/>
+	   <dependency org="com.adobe.blazeds" name="blazeds-common" rev="3.2.0.3978" transitive="false" conf="compile,runtime->default"/>		  
+	   <dependency org="com.adobe.blazeds" name="blazeds-remoting" rev="3.2.0.3978" transitive="false" conf="compile,runtime->default"/>
+	   
+	   
+	   <!-- Spring dependencies -->
+	   	<dependency org="xalan" name="serializer" rev="2.7.1" transitive="false" conf="compile,runtime->default"/>
+	    <dependency org="xml-apis" name="xml-apis" rev="2.0.2" transitive="false" conf="runtime"/>
+	    <dependency org="wsdl4j" name="wsdl4j" rev="1.6.2" transitive="false" conf="compile,runtime->default"/>    
+        <dependency org="org.springframework.ws" name="org.springframework.xml" rev="1.5.9.A" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.oxm" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework.security" name="org.springframework.security.core" rev="3.0.2.RELEASE" transitive="false" conf="compile,runtime"/>
+		<dependency org="org.springframework.security" name="org.springframework.security.config" rev="3.0.2.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.core" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+  	    <dependency org="org.springframework.flex" name="org.springframework.flex" rev="1.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+ 	    <dependency org="org.springframework" name="org.springframework.aop" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.beans" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.context" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.context.support" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.orm" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.test" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.aspects" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.transaction" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.web" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+	    <dependency org="org.springframework" name="org.springframework.jdbc" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework" name="org.springframework.asm" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework" name="org.springframework.expression" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework" name="org.springframework.instrument.tomcat" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework" name="org.springframework.instrument" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework" name="org.springframework.jms" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework" name="org.springframework.web.portlet" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework" name="org.springframework.web.servlet" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework" name="org.springframework.web.struts" rev="3.0.3.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework.security" name="org.springframework.security.annotation" rev="2.0.5.RELEASE" transitive="false" conf="compile,runtime" />
+    	<dependency org="org.springframework.security" name="org.springframework.security.web" rev="3.0.2.RELEASE" transitive="false" conf="compile,runtime"/>
+    	<dependency org="org.springframework.ws" name="org.springframework.ws" rev="1.5.9.A" transitive="false" conf="compile,runtime"/> 
+ 
+       <!-- Apache Commons dependencies -->
+       <dependency org="commons-logging" name="commons-logging" rev="1.1.1" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-pool" name="commons-pool" rev="1.5.4" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-io" name="commons-io" rev="1.4" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-httpclient" name="commons-httpclient" rev="3.1" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-fileupload" name="commons-fileupload" rev="1.2.1" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-digester" name="commons-digester" rev="2.0" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-dbcp" name="commons-dbcp" rev="1.4" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-collections" name="commons-collections" rev="3.2.1" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-codec" name="commons-codec" rev="1.4" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-beanutils" name="commons-beanutils" rev="1.8.3" transitive="false" conf="compile,runtime->default"/>
+       <dependency org="commons-lang" name="commons-lang" rev="2.5" transitive="false" conf="compile,runtime->default"/>
+       
+       <!-- Hibernate dependencies -->
+       <dependency org="org.hibernate" name="hibernate-core" rev="3.5.1-Final"  transitive="false" conf="compile,runtime->default"/>
+	   <dependency org="org.hibernate" name="hibernate-annotations" rev="3.5.1-Final"  transitive="false" conf="compile,runtime->default"/>
+       <dependency org="org.hibernate" name="hibernate-commons-annotations" rev="3.3.0.ga"  transitive="false" conf="compile,runtime->default"/>    
+       
+        <dependency org="xalan" name="xalan" rev="2.7.1" transitive="false" conf="compile,runtime->default"/>
+		<dependency org="antlr" name="antlr" rev="2.7.7" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="asm" name="asm" rev="3.2" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="cglib" name="cglib" rev="2.2" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="backport-util-concurrent" name="backport-util-concurrent" rev="3.1" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="org.aspectj" name="aspectjweaver" rev="1.6.9" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="asm" name="asm-attrs" rev="2.2.3" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="dom4j" name="dom4j" rev="1.6.1" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="org.hibernate" name="ejb3-persistence" rev="1.0.2.GA" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="itext" name="itext" rev="1.3.1" transitive="false" conf="compile,runtime->default"/>  	
+    	<dependency org="javassist" name="javassist" rev="3.0" transitive="false" conf="compile,runtime->default"/>	
+    	<dependency org="org.apache.velocity" name="velocity" rev="1.6.4" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="org.slf4j" name="slf4j-api" rev="1.6.1" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.1" transitive="false" conf="compile,runtime->default"/>
+    	<dependency org="mysql" name="mysql-connector-java" rev="5.1.13"  transitive="false" conf="compile,runtime->default"/>
+	    <dependency org="log4j" name="log4j" rev="1.2.16" transitive="false" conf="compile,runtime->default" />
+		<dependency org="javax.mail" name="mail" rev="1.4.1" transitive="false" conf="compile,runtime->default"/>
+        <dependency org="commons-lang" name="commons-lang" rev="1.0" transitive="false" conf="compile,runtime->default"/>
+        <dependency org="junit" name="junit" rev="4.8.1" transitive="false" conf="compile,runtime->default" />
+        <dependency org="javax.transaction" name="jta" rev="1.1" transitive="false" conf="compile,runtime->default"/>
+        <dependency org="org.aopalliance" name="com.springsource.org.aopalliance" rev="1.0.0"  conf="compile,runtime"/>
+        <dependency org="quartz" name="quartz" rev="1.5.2" transitive="false" conf="compile,runtime->default" />
+	    
+    </dependencies>
+</ivy-module>

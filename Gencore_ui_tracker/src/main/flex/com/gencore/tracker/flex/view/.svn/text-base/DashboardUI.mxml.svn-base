@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 initialize="onInit()" 
+		 xmlns:mediator="org.lucciframework.luccimvc.view.mediator.*">
+	<fx:Declarations>
+		<mediator:MediatorReference id="trackerMediator" 
+									mediatorName="trackerMediator" 
+									componentName="dashboardUI"
+									facadeRef="trackerFacade" />
+		<mx:DateFormatter id="dateFormatter" formatString="YYYY/MM/DD LL:NN:SS"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.assets.ConstIcons;
+			import com.gencore.commons.flex.utils.GPSUtils;
+			import com.gencore.commons.flex.vo.CourseVO;
+			import com.gencore.tracker.flex.view.mediator.TrackerMediator;
+			
+			import mx.core.FlexGlobals;
+			import mx.managers.PopUpManager;
+			
+			
+			[Bindable]
+			private var mediator : TrackerMediator;
+			
+			private function onInit() : void {
+				this.mediator = trackerMediator.mediator as TrackerMediator;
+				
+				this.mediator.getCoursesOfUser();
+			}
+
+			private function specificLabel(item : Object, column : DataGridColumn) : String {
+				
+				var _currentCourse : CourseVO =  (item as CourseVO);
+				
+				var temp : String
+				switch (column.dataField) {
+					case 'endDate':
+					{
+						temp = dateFormatter.format(_currentCourse.endDate);
+						break;
+					}
+					case 'distance':
+					{
+						temp =_currentCourse.distance.toPrecision(3) + ' km';
+						break;
+					}
+					case 'speedAverage':
+					{
+						temp = _currentCourse.speedAverage.toPrecision(3) + ' km/h';
+						break;
+					}
+					case 'kmAverage':
+					{
+						temp = GPSUtils.convertMillisecondsToHHMMSS(_currentCourse.kmAverage * GPSUtils.millisecondsPerMinute);
+						break;
+					}
+					case 'duration':
+					{
+						temp = GPSUtils.convertMillisecondsToHHMMSS(_currentCourse.endDate.getTime() - _currentCourse.startDate.getTime());
+						break;
+					}
+				}
+				return temp;
+			}
+			
+			protected function importData(event:MouseEvent):void
+			{
+				
+				var importDataPopup:ImportDataPopup = new ImportDataPopup();
+				
+				var main:DisplayObject = FlexGlobals.topLevelApplication as DisplayObject;
+				importDataPopup.x = (main.width - importDataPopup.width) / 2;
+				importDataPopup.y = (main.height - importDataPopup.height) / 2;
+				
+				PopUpManager.addPopUp(importDataPopup,this,true);
+				
+			}
+
+			
+		]]>
+	</fx:Script>
+
+	
+	<s:layout>
+		<s:VerticalLayout   paddingRight="20" paddingLeft="20"
+							paddingBottom="10" paddingTop="10"/>
+	</s:layout>
+	
+	
+	<s:Group width="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout horizontalAlign="left" paddingRight="20" paddingLeft="20"
+								paddingBottom="10" paddingTop="10"/>
+		</s:layout>
+		
+		
+		<mx:Image source="{ConstIcons.importIcon}" 
+				  buttonMode="true" 
+				  toolTip="Import data"
+				  click="importData(event)"/>
+		<mx:Image source="{ConstIcons.exportIcon}" 
+				  buttonMode="true" 
+				  toolTip="Export data"
+				  click=""/>
+		<mx:Image source="{ConstIcons.refreshIcon}" 
+				  buttonMode="true" 
+				  toolTip="Refresh"
+				  click="this.mediator.getCoursesOfUser();"/>
+		
+		<!--<mx:Spacer width="100%" />-->
+	
+<!--		<components:CustomTextInput id="search_ti" enter="search()"  defaultText="Search"/>
+		<mx:Button id="go_bt" click="search()" label="Go" width="40" />-->
+		
+	</s:Group>
+	
+	<s:Group width="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout horizontalAlign="left" paddingRight="20" paddingLeft="20"
+								paddingBottom="10" paddingTop="10"/>
+		</s:layout>
+		
+		
+		<mx:Image source="{ConstIcons.cyclingSmallIcon}" 
+				  buttonMode="true" 
+				  toolTip=""
+				  click=""/>
+		<s:Label text="{this.mediator.cycling_total.toPrecision(3) + ' km'}"/>
+		<mx:Image source="{ConstIcons.runningSmallIcon}" 
+				  buttonMode="true" 
+				  toolTip=""
+				  click=""/>
+		<s:Label text="{this.mediator.running_total.toPrecision(3) + ' km'}"/>
+		<mx:Image source="{ConstIcons.walkingSmallIcon}" 
+				  buttonMode="true" 
+				  toolTip=""
+				  click="this.mediator.getCoursesOfUser();"/>
+		<s:Label text="{this.mediator.walking_total.toPrecision(3) + ' km'}"/>
+		
+		<!--<mx:Spacer width="100%" />-->
+		
+		<!--		<components:CustomTextInput id="search_ti" enter="search()"  defaultText="Search"/>
+		<mx:Button id="go_bt" click="search()" label="Go" width="40" />-->
+		
+	</s:Group>
+	
+	<s:Group width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout   paddingRight="20" paddingLeft="20"
+								paddingBottom="10" paddingTop="10"/>
+		</s:layout>
+		
+		<s:Label text="Last Events" fontSize="18"/>
+		
+		<mx:DataGrid width="50%" height="50%" dataProvider="{this.mediator.courses}" rowHeight="50">
+			<mx:columns>
+				<mx:DataGridColumn id="courseType" dataField="courseType" headerText="Type"
+								   
+								   itemRenderer="com.gencore.tracker.flex.view.renderers.CourseTypeRenderer">
+				</mx:DataGridColumn>
+				
+				<mx:DataGridColumn id="enDate" dataField="endDate" headerText="End Date" 
+								   labelFunction="specificLabel"/>
+				
+				<mx:DataGridColumn id="distance" dataField="distance" headerText="Distance" labelFunction="specificLabel"/>
+				<mx:DataGridColumn id="speedAverage" dataField="speedAverage" headerText="Avg Speed" labelFunction="specificLabel"/>
+				<mx:DataGridColumn id="kmAverage" dataField="kmAverage" headerText="Avg Km" labelFunction="specificLabel"/>
+				<mx:DataGridColumn id="duration" dataField="duration" labelFunction="specificLabel" headerText="Duration"/>
+				
+			</mx:columns>
+		</mx:DataGrid>
+	</s:Group>
+	
+			
+		
+	<!--</s:Panel>-->
+</s:Group>

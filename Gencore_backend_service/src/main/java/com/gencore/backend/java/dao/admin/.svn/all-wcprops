@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/dao/admin
+END
+UserDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/GenerixCore/!svn/ver/373/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/dao/admin/UserDAO.java
+END
+UserDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/dao/admin/UserDAOImpl.java
+END
+RoleDAO.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/dao/admin/RoleDAO.java
+END
+RoleDAOImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/dao/admin/RoleDAOImpl.java
+END

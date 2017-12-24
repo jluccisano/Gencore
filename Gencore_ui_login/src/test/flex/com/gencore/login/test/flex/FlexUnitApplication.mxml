@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Ce fichier est généré automatiquement et n'est pas destiné à être modifié. -->
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+    minWidth="955" minHeight="600" creationComplete="onCreationComplete()"
+    xmlns:flexui="flexunit.flexui.*" xmlns:adobe="http://www.adobe.com/2009/flexUnitUIRunner" xmlns:facade="org.lucciframework.luccimvc.facade.*"
+    xmlns:business="org.lucciframework.luccimvc.business.*">
+
+    <fx:Metadata>
+		[ResourceBundle('gencore')]
+		[ResourceBundle('gencore_login')]
+	</fx:Metadata>
+
+    <fx:Declarations>
+        <facade:Facade facadeRef="loginFacade" debug="true">
+
+            <!-- Business -->
+            <facade:services>
+                <business:RegisterService serviceClass="{LoginServices}" />
+            </facade:services>
+
+        </facade:Facade>
+    </fx:Declarations>
+    <fx:Script>
+        <![CDATA[
+			import com.gencore.commons.flex.model.MainModel;
+			import com.gencore.login.flex.business.LoginServices;
+			
+			import flexunit.framework.TestSuite;
+			
+			import org.flexunit.listeners.CIListener;
+			import org.flexunit.listeners.UIListener;
+			import org.flexunit.runner.FlexUnitCore;
+
+            public function getAllTests() : TestSuite {
+
+                var testSuite : TestSuite = new TestSuite();
+                testSuite.addTestSuite(LoginTestCase);
+                return testSuite;
+
+            }
+
+            private function onCreationComplete() : void {
+
+                //testRunner.test=getAllTests();
+                //testRunner.startTest();
+				
+				MainModel.ENDPOINT = "http://192.168.0.15/Gencore_portal/spring/messagebroker/amf";
+
+
+                var core : FlexUnitCore = new FlexUnitCore();
+
+                /**If you don't need graphical test results, comment out the line below and the MXML declaring
+                 the TestRunnerBase. **/
+                core.addListener(new UIListener(testRunner));
+                core.addListener(new CIListener());
+
+                /**If you would like to see text output in verbose mode, umcomment either of the follow listeners **/
+                //core.addListener( new TraceListener() ); - For AS3 Projects
+                //core.addListener( TextListener.getDefaultTextListener( LogEventLevel.DEBUG ) ); - For Flex Projects
+
+                core.run(LoginTestCase);
+
+
+            }
+        ]]>
+    </fx:Script>
+
+    <adobe:TestRunnerBase id="testRunner" />
+
+</s:Application>

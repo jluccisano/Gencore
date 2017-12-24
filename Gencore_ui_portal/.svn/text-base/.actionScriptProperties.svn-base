@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="com/gencore/portal/flex/gencore_ui_portal.mxml" projectUUID="0a8f3588-046f-4aa5-ae67-9fa278db7785" version="6">
+  <compiler additionalCompilerArguments="-incremental=true -locale en_US fr_FR  -source-path=./locale/{locale} -include-resource-bundles GencoreProperties -include-libraries  &quot;${flexlib}/libs/automation/automation_spark.swc&quot; &quot;${flexlib}/libs/automation/automation.swc&quot; &quot;${flexlib}/libs/automation/automation_agent.swc&quot; &quot;${flexlib}/libs/automation/automation_dmv.swc&quot;" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderLocation="GENCORE_PORTAL/src/main/webapp/flex" outputFolderPath="bin-debug" rootURL="http://localhost:8080/Gencore_portal/flex" sourceFolderPath="src/main/flex" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="3" linkType="1" path="/Gencore_ui_commons/bin-debug/Gencore_ui_commons.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/LucciMVC/bin-debug/LucciMVC.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/LucciValidator/bin-debug/LucciValidator.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/Gencore_assets/bin-debug/Gencore_assets.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="com/gencore/portal/flex/gencore_ui_portal.mxml"/>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
+</actionScriptProperties>

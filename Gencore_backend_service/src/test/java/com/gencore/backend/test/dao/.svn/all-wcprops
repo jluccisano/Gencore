@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/GenerixCore/!svn/ver/375/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/dao
+END
+UserProfileDaoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/GenerixCore/!svn/ver/375/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/dao/UserProfileDaoTest.java
+END
+UserRoleDaoTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/GenerixCore/!svn/ver/296/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/dao/UserRoleDaoTest.java
+END
+DaoTestSuite.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/test/java/com/gencore/backend/test/dao/DaoTestSuite.java
+END

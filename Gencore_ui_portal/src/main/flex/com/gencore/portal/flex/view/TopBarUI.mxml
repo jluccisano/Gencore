@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="100%" height="70" creationComplete="group1_creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+	</fx:Declarations>
+	
+<!--	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		
+		@font-face {
+			
+			src: url("./com/gencore/assets/fonts/NeverSayDie.ttf");
+			fontFamily: "MyFont";
+			fontWeight: "bold";
+			embedAsCFF: true;
+		}
+	</fx:Style>-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.assets.ConstIcons;
+			import com.gencore.commons.flex.manager.GencoreModuleManager;
+			import com.gencore.commons.flex.model.MainModel;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			
+			[Bindable]
+			public var model:MainModel = MainModel.instance;
+			
+	/* 		protected function clickHandler(event:MouseEvent):void
+			{
+			
+				moduleManager.loadModule(MainModel.LOGIN_MODULE);
+				model.connected = false;
+			
+			}
+
+
+			protected function showUser(event:MouseEvent):void
+			{
+				var userUI:UserUI = new UserUI();
+				userUI.currentUser = model.userConnected;
+				userUI.currentState = UserUI.STATE_VIEW;
+				PopUpManager.addPopUp(userUI,this.parentApplication as DisplayObject,true);
+				PopUpManager.centerPopUp(userUI);
+			} */
+
+
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				this.moduleLoader.applicationDomain = new ApplicationDomain(ApplicationDomain.currentDomain);
+				this.moduleLoader.loadModule(MainModel.LOGIN_MODULE);
+	
+			}
+
+		]]>
+	</fx:Script>
+	
+<!--	<s:layout>
+		<s:HorizontalLayout horizontalAlign="right"/>
+	</s:layout>
+	
+	<s:HGroup>-->
+		
+		<!-- Set a custom skin for the container to show a gradient background and border -->
+	<s:SkinnableContainer skinClass="com.gencore.portal.flex.view.skins.TopBarSkin" 
+							  width="100%" height="100%" 
+							  horizontalCenter="0" 
+							  verticalCenter="0">
+		
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="center" paddingBottom="5" paddingLeft="20" paddingRight="5" paddingTop="10"/>
+		</s:layout>
+		
+		<s:Group width="100%" height="100%" bottom="5" right="5" left="5" top="10">
+			
+
+			
+			<s:layout>
+				<s:HorizontalLayout paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="0" />
+			</s:layout>
+			
+			
+			<mx:Image source="{ConstIcons.earthIcon}"/>
+			
+			<s:Group>
+				
+				<s:layout>
+					<s:VerticalLayout paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="15" />
+				</s:layout>
+				
+				
+				
+				<s:Label fontSize="24" fontWeight="bold" fontFamily="Arial" text="LucciTracker" color="white"/>
+				
+			</s:Group>
+			
+			
+			
+			<mx:Spacer width="70%"/>
+			
+			<!--<s:TextInput/>
+			
+			<s:VGroup>
+				<s:TextInput displayAsPassword="true"/>
+				<mx:LinkButton label="{resourceManager.getString('i18n','gencore.portal.forgotpass')}"
+							   color="white" 
+							   textDecoration="underline" />
+			</s:VGroup>
+			
+			<s:Button id="submit_bt" label="{resourceManager.getString('i18n','gencore.portal.submit')}"
+					  click="getConnection()"/>-->
+			
+			<mx:ModuleLoader id="moduleLoader" width="100%" height="100%" paddingTop="10"  />
+			
+		</s:Group>
+		
+
+			
+	</s:SkinnableContainer>
+		
+<!--		<mx:LinkButton label="{model.userConnected.firstName + ' ' + model.userConnected.lastName}"
+					   color="0x3380DD" 
+					   textDecoration="underline"
+					   click="showUser(event)"/>
+		
+		<mx:LinkButton label="logout"
+					   color="0x3380DD" 
+					   textDecoration="underline"
+					   click="clickHandler(event)"/>
+	</s:HGroup>
+-->
+</s:Group>

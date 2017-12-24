@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" version="3">
+  <includeClasses>
+    <classEntry path="com.gencore.commons.flex.manager.ErrorManager"/>
+    <classEntry path="com.gencore.commons.flex.manager.GencoreModuleManager"/>
+    <classEntry path="com.gencore.commons.flex.model.MainModel"/>
+    <classEntry path="com.gencore.commons.flex.vo.GPSLocationVO"/>
+    <classEntry path="com.gencore.commons.flex.vo.UserProfileVO"/>
+    <classEntry path="com.gencore.commons.flex.vo.UserRoleVO"/>
+    <classEntry path="com.gencore.commons.flex.vo.DeviceVO"/>
+    <classEntry path="com.gencore.commons.flex.components.CustomTextInput"/>
+    <classEntry path="com.gencore.commons.flex.utils.GPSUtils"/>
+    <classEntry path="com.gencore.commons.flex.vo.TotalStatsVO"/>
+    <classEntry path="com.gencore.commons.flex.enums.Language"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build_gencore_assets">
+	
+	<!-- Load property file-->
+	<property environment="env"/>
+	<property file="build.properties"/>
+	 
+	<import file="${env.GENTOOLS_HOME}/build_commons.xml"/>
+	
+	<import file="${env.GENTOOLS_HOME}/build_flex_commons.xml"/>
+	
+	
+	<!-- ================================= 
+	    target: build Gencore assets          
+	  ================================= -->
+	<target name="install" depends="init_build,build_flex_library" description="--> build Gencore assets"/>			  
+
+	<target name="install-env" description="--> Installation des .project">
+		<antcall target="eclipse:install-project"> 
+			<param name="svn.project.name" value="Gencore_assets"/> 
+			<param name="type" value="flex_library_project"/> 
+	   </antcall>
+	</target>
+		
+</project>

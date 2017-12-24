@@ -1,0 +1,46 @@
+gencore.portal.version=version
+gencore.portal.button.ok=Ok
+gencore.portal.button.cancel=Annuler
+gencore.portal.button.save=Sauvegarder
+gencore.portal.button.modify=Modifier
+gencore.portal.button.close=Fermer
+
+gencore.portal.about=A propos
+gencore.portal.contact=Contact
+gencore.portal.copyright=Copyright
+
+gencore.portal.firstName=Pr\u00E9nom
+gencore.portal.lastName=Nom
+gencore.portal.email=Email
+gencore.portal.email.confirmation=Confirmer l'email
+gencore.portal.password=Mot de passe
+gencore.portal.password.confirmation=Confirmer le mot de passe
+gencore.portal.changeCredentials=Modifier mes identifiants
+gencore.portal.actualPassword=Actuel mot de passe
+gencore.portal.newPassword=Nouveau mot de passe
+gencore.portal.confirmPassword=Confirmer mot de passe
+gencore.portal.passwordDifferent=Veuillez saisir le m\u00eame mot de passe
+gencore.portal.emailDifferent=Veuillez saisir le m\u00eame email
+gencore.portal.lang=Langue
+gencore.portal.login=Identifiant
+
+gencore.portal.forgotpass=Lost your password ?
+gencore.portal.submityouremail=Veuillez saisir votre adresse emal
+gencore.portal.warning=Warning !
+gencore.portal.delete.elements=Etes-vous sur de vouloir supprimer ces {0} elements
+gencore.portal.connect=connect
+gencore.portal.submit=submit
+gencore.portal.send=send
+gencore.portal.emailsent=An email has been send to you
+gencore.portal.backtologin=return to login
+gencore.portal.cancel=cancel
+gencore.portal.redirectUrl=http://www.google.fr
+gencore.portal.badcredentials=bad credentials
+
+gencore.portal.fr=fran\u00E7ais
+gencore.portal.uk=anglais
+gencore.portal.select.language=Selectionnez une langue
+gencore.portal.password=Mot de passe
+gencore.portal.warning=Attention !
+gencore.portal.info=Information
+gencore.portal.delete.elements=Etes-vous sûr de vouloir supprimer ces {0} élements

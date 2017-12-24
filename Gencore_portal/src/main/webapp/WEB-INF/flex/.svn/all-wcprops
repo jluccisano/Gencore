@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/GenerixCore/!svn/ver/239/trunk/Gencore_portal/src/main/webapp/WEB-INF/flex
+END
+messaging-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/GenerixCore/!svn/ver/239/trunk/Gencore_portal/src/main/webapp/WEB-INF/flex/messaging-config.xml
+END
+version.properties
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/GenerixCore/!svn/ver/239/trunk/Gencore_portal/src/main/webapp/WEB-INF/flex/version.properties
+END
+proxy-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/GenerixCore/!svn/ver/239/trunk/Gencore_portal/src/main/webapp/WEB-INF/flex/proxy-config.xml
+END
+services-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/GenerixCore/!svn/ver/239/trunk/Gencore_portal/src/main/webapp/WEB-INF/flex/services-config.xml
+END
+remoting-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/GenerixCore/!svn/ver/239/trunk/Gencore_portal/src/main/webapp/WEB-INF/flex/remoting-config.xml
+END

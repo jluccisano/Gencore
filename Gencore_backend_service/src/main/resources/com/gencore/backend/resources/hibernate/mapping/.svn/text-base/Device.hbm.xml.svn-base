@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.gencore.backend.java.entity" default-access="field" default-lazy="false">
+ <class name="Device" table="T_DEVICE">
+  
+        <id name="id" column="ID" type="java.lang.Long">
+  			<generator class="native" />
+  		</id>
+        <property name="imei" type="java.lang.String">
+            <column name="IMEI" />
+        </property>   
+       
+<!--   		<one-to-one name="user" class="UserProfile"></one-to-one>-->
+   		
+   	    <many-to-one name="user"  column="USER"  class="UserProfile" cascade="persist,merge,save-update"   unique="true" not-null="true"/>
+
+   		 
+ </class>
+</hibernate-mapping>

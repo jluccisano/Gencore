@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service:Services xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				  xmlns:service="org.lucciframework.luccimvc.business.*"
+				  xmlns:s="library://ns.adobe.com/flex/spark" 
+				  xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.commons.flex.model.MainModel;
+			
+			import mx.resources.ResourceManager;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		
+		<mx:RemoteObject  endpoint="{MainModel.ENDPOINT}"
+						  id="userService" 
+						  destination="userService"
+						  showBusyCursor="true"/>
+		
+		
+	</fx:Declarations>
+	
+	
+	
+	
+</service:Services>

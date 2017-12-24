@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/GenerixCore/!svn/ver/390/trunk/Gencore_ui_commons/src/main/flex/com/gencore/commons/flex/vo
+END
+DeviceVO.as
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/GenerixCore/!svn/ver/336/trunk/Gencore_ui_commons/src/main/flex/com/gencore/commons/flex/vo/DeviceVO.as
+END
+UserProfileVO.as
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/GenerixCore/!svn/ver/390/trunk/Gencore_ui_commons/src/main/flex/com/gencore/commons/flex/vo/UserProfileVO.as
+END
+CourseVO.as
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/GenerixCore/!svn/ver/368/trunk/Gencore_ui_commons/src/main/flex/com/gencore/commons/flex/vo/CourseVO.as
+END
+UserRoleVO.as
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/GenerixCore/!svn/ver/217/trunk/Gencore_ui_commons/src/main/flex/com/gencore/commons/flex/vo/UserRoleVO.as
+END
+GPSLocationVO.as
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/GenerixCore/!svn/ver/336/trunk/Gencore_ui_commons/src/main/flex/com/gencore/commons/flex/vo/GPSLocationVO.as
+END
+TotalStatsVO.as
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/GenerixCore/!svn/ver/390/trunk/Gencore_ui_commons/src/main/flex/com/gencore/commons/flex/vo/TotalStatsVO.as
+END

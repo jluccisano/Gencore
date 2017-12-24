@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws
+END
+StartTrackingEndpoint.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws/StartTrackingEndpoint.java
+END
+StopTrackingEndpoint.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/GenerixCore/!svn/ver/376/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws/StopTrackingEndpoint.java
+END
+SendGPSLocationEndpoint.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/GenerixCore/!svn/ver/347/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws/SendGPSLocationEndpoint.java
+END

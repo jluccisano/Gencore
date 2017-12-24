@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/GenerixCore/!svn/ver/386/trunk/Gencore_portal/sql
+END
+insert_init_data_UserProfile.csv
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/GenerixCore/!svn/ver/240/trunk/Gencore_portal/sql/insert_init_data_UserProfile.csv
+END
+insert_init_data_UserRole.csv
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/GenerixCore/!svn/ver/240/trunk/Gencore_portal/sql/insert_init_data_UserRole.csv
+END
+create_gencore_database_v0.1.sql
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/GenerixCore/!svn/ver/386/trunk/Gencore_portal/sql/create_gencore_database_v0.1.sql
+END
+insert_gencore_database_v0.1.sql
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/GenerixCore/!svn/ver/386/trunk/Gencore_portal/sql/insert_gencore_database_v0.1.sql
+END

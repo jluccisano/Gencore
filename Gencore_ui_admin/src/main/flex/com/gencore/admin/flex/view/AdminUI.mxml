@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx"
+    width="100%" height="100%" initialize="onInit()"
+    xmlns:mediator="org.lucciframework.luccimvc.view.mediator.*" xmlns:checkboxdatagrid="org.lucciframework.checkboxdatagrid.*" xmlns:components="com.gencore.commons.flex.components.*">
+    <fx:Declarations>
+        <mediator:MediatorReference id="adminMediator" mediatorName="adminMediator" componentName="adminUI"
+            facadeRef="adminFacade" />
+    </fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[
+			import com.gencore.admin.flex.view.mediator.AdminMediator;
+			import com.gencore.assets.ConstIcons;
+			import com.gencore.commons.flex.model.MainModel;
+			import com.gencore.commons.flex.vo.UserProfileVO;
+			import com.gencore.commons.flex.vo.UserRoleVO;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+
+            [Bindable] private var mediator : AdminMediator;
+
+            [Bindable] private var model : MainModel = MainModel.instance;
+
+            private function onInit() : void {
+                this.mediator = adminMediator.mediator as AdminMediator;
+                this.mediator.getUsers();
+            }
+			
+			private function deleteUsers() : void {
+				
+				var params : Array = [this.users_dg.getCheckedElements().length];
+				Alert.show(resourceManager.getString('i18n', 'gencore.portal.delete.elements',params),
+						   resourceManager.getString('i18n', 'gencore.portal.warning'),
+						   Alert.CANCEL | Alert.OK ,this,closeAlert,ConstIcons.warningIcon,Alert.OK);			
+			}
+			
+			private function closeAlert(event:CloseEvent):void {
+				if(event.detail == Alert.OK) {
+					this.mediator.deleteUsers(this.users_dg.getCheckedElements());
+				}
+			}
+			
+			private function addUser () : void {
+				
+			}
+			
+			protected function showUser():void
+			{
+				
+			}
+
+            private function specificLabel(item : Object, column : DataGridColumn) : String {
+
+                var temp : String
+                switch (column.dataField) {
+                    case 'role':
+                        {
+                            temp = (item as UserProfileVO).role.name;
+                            break;
+                        }
+
+                    case 'creationDate':
+                        {
+                            temp = model.dateFormat.format((item as UserProfileVO).creationDate);
+                            break;
+                        }
+
+                    case 'lastAccessDate':
+                        {
+                            temp = model.dateFormat.format((item as UserProfileVO).lastAccessDate);
+                            break;
+                        }
+                }
+                return temp;
+            }
+
+            private function search() : void {
+
+                this.mediator.users.filterFunction = filterFunctionAll;
+                this.mediator.users.refresh();
+				users_dg.dataProvider = this.mediator.users;
+            }
+
+            private function filterFunctionAll(item : Object) : Boolean {
+
+                var isOK : Boolean;
+
+                if (item.firstName != null && item.firstName.match(new RegExp(this.search_ti.text, 'i')) != null) {
+                    isOK = true;
+                }
+                if (item.lastName != null && item.lastName.match(new RegExp(this.search_ti.text, 'i')) != null) {
+                    isOK = true;
+                }
+                if (item.email != null && item.email.match(new RegExp(this.search_ti.text, 'i')) != null) {
+                    isOK = true;
+                }
+
+                return isOK;
+            }
+
+
+        ]]>
+    </fx:Script>
+
+    <s:layout>
+        <s:VerticalLayout horizontalAlign="center"  paddingRight="20" paddingLeft="20"
+						  paddingBottom="10" paddingTop="10"/>
+    </s:layout>
+
+    <s:Group width="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout horizontalAlign="left" paddingRight="20" paddingLeft="20"
+								paddingBottom="10" paddingTop="10"/>
+		</s:layout>
+
+
+         <mx:Image source="{ConstIcons.addIcon}" 
+				   buttonMode="true" 
+				   toolTip="Add User"
+				   click="addUser()"/>
+         <mx:Image source="{ConstIcons.deleteIcon}" 
+				   buttonMode="true" 
+				   toolTip="Delete selected user(s)"
+				   click="deleteUsers()"/>
+		<mx:Image source="{ConstIcons.refreshIcon}" 
+				  buttonMode="true" 
+				  toolTip="Refresh"
+				  click="this.mediator.getUsers()"/>
+
+		 <mx:Spacer width="100%" />
+		
+	
+		 <!--<mx:TextInput id="search_ti" enter="search()"  />-->
+		 <components:CustomTextInput id="search_ti" enter="search()"  defaultText="Search"/>
+		 <mx:Button id="go_bt" click="search()" label="Go" width="40" />
+
+    </s:Group>
+
+    <checkboxdatagrid:LucciCheckBoxDataGrid id="users_dg" 
+											dataProvider="{this.mediator.users}" 
+											width="100%"
+											height="100%"
+											doubleClickEnabled="true"
+											doubleClick="showUser()">
+        <checkboxdatagrid:columns>
+            <mx:DataGridColumn id="login" dataField="login" headerText="Login"
+                textAlign="center" width="80" />
+            <mx:DataGridColumn id="firstName" dataField="firstName" headerText="FirstName"
+                textAlign="center" width="80"/>
+            <mx:DataGridColumn id="lastName" dataField="lastName" headerText="LastName"
+                textAlign="center" width="80"/>
+            <mx:DataGridColumn id="email" dataField="email" headerText="Email"
+                textAlign="center" width="120"/>
+            <mx:DataGridColumn id="language" dataField="language" headerText="Language"
+                textAlign="center" width="40" itemRenderer="com.gencore.admin.flex.view.renderers.LanguageRenderer" />
+            <mx:DataGridColumn id="creationDate" labelFunction="specificLabel" textAlign="center"
+                dataField="creationDate" width="50" headerText="Creation Date" />
+            <mx:DataGridColumn id="lastAccess" labelFunction="specificLabel" textAlign="center"
+                dataField="lastAccessDate" width="50" headerText="Last Connection" />
+            <mx:DataGridColumn id="role" labelFunction="specificLabel" textAlign="center"
+                dataField="role" headerText="Role" width="50" />
+            <mx:DataGridColumn id="locked" dataField="locked" headerText="Locked" width="30"
+                textAlign="center" itemRenderer="com.gencore.admin.flex.view.renderers.BooleanRenderer" />
+            <mx:DataGridColumn id="Enabled" dataField="enabled" headerText="Enabled" width="30"
+                textAlign="center" itemRenderer="com.gencore.admin.flex.view.renderers.BooleanRenderer" />
+        </checkboxdatagrid:columns>
+    </checkboxdatagrid:LucciCheckBoxDataGrid>
+
+
+</s:Group>

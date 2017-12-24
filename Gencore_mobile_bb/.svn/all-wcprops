@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/GenerixCore/!svn/ver/371/trunk/Gencore_mobile_bb
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/GenerixCore/!svn/ver/341/trunk/Gencore_mobile_bb/.classpath
+END
+config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/GenerixCore/!svn/ver/341/trunk/Gencore_mobile_bb/config.xml
+END
+build.properties
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/GenerixCore/!svn/ver/341/trunk/Gencore_mobile_bb/build.properties
+END
+BlackBerry_App_Descriptor.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/GenerixCore/!svn/ver/341/trunk/Gencore_mobile_bb/BlackBerry_App_Descriptor.xml
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/GenerixCore/!svn/ver/341/trunk/Gencore_mobile_bb/build.xml
+END

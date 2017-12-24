@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.gencore.backend.java.entity" default-access="field" default-lazy="false">
+ <class name="Course" table="T_COURSE">
+  
+        <id name="id" column="ID" type="java.lang.Long">
+  			<generator class="native" />
+  		</id>
+  		 <property name="courseId" type="java.lang.String">
+            <column name="COURSE_ID" unique="true" />
+        </property>
+<!--         <property name="courseType" type="java.lang.String">-->
+<!--            <column name="TYPE" />-->
+<!--        </property>-->
+        <many-to-one name="courseType"  column="COURSE_TYPE_ID"  class="CourseType" cascade="persist,merge,save-update"  unique="true" />
+        
+  		<property name="startDate" type="java.util.Date">
+            <column name="START_DATE" />
+        </property>
+        <property name="endDate" type="java.util.Date">
+            <column name="END_DATE" />
+        </property>
+        <property name="distance" type="java.lang.Double">
+            <column name="DISTANCE" />
+        </property> 
+        <property name="speedAverage" type="java.lang.Double">
+            <column name="SPEED_AVERAGE" />
+        </property>
+        <property name="kmAverage" type="java.lang.Double">
+            <column name="KM_AVERAGE" />
+        </property>    
+        <property name="status" type="java.lang.Integer">
+            <column name="STATUS" />
+        </property>     
+        
+   		<many-to-one name="user" column="USER" class="UserProfile" cascade="persist,merge,save-update" />
+   		
+   		<many-to-one name="startLocation" column="START_LOCATION" class="GPSLocation" cascade="persist,merge,save-update" />  
+   		
+   		<set name="gpsLocations" order-by="ACQUISITION_DATE ASC" lazy="false">
+   			<key column="COURSE"></key>
+   			<one-to-many class="GPSLocation" />
+   		</set>
+
+   		
+ </class>
+</hibernate-mapping>

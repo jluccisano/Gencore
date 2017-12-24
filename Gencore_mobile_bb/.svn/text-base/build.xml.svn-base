@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+
+
+   <property environment="env"/>
+   <property file="build.properties"/>
+	
+   <import file="${env.GENTOOLS_HOME}/build_commons.xml"/>
+	
+	
+  <path id="compile.classpath">
+  	<fileset dir="C:/Sun/jwsdp-2.0/jaxrpc/lib" includes="**/*.jar"/>
+  	<fileset dir="C:/Sun/jwsdp-2.0/jaxp/lib" includes="**/*.jar"/>
+  	<fileset dir="C:/Sun/jwsdp-2.0/jwsdp-shared/lib" includes="**/*.jar"/>
+  	
+  	<!--  <fileset dir="C:\WTK2.5.2_01\bin" includes="**/*.jar"/>-->
+  	
+  </path>
+  
+  
+  <taskdef name="wscompile" classname="com.sun.xml.rpc.tools.ant.Wscompile">
+     <classpath refid="compile.classpath"/>
+  </taskdef>
+  
+   <target name="generate-stubs" depends="init_build">
+	    <wscompile
+         		keep="true"
+         		client="true"
+         		xPrintStackTrace="true"
+         		verbose="false"
+         		base="build/bin-temp"
+         		config="config.xml">
+	         <classpath>
+	            <path refid="compile.classpath"/>
+	         </classpath>
+    	</wscompile>
+    	
+    	<copy todir="src/main/java" >
+		    <fileset dir="build/bin-temp">
+		    	<exclude name="*.class"/>
+		    </fileset>		
+		</copy> 
+    	
+   </target>
+  
+  
+</project>

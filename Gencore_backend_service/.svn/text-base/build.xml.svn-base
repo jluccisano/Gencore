@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build_backend" basedir=".">
+
+	<!-- Load property file-->
+	<property environment="env"/>
+	<property file="build.properties"/>
+	
+	<import file="${env.GENTOOLS_HOME}/build_commons.xml"/>
+	<import file="${env.GENTOOLS_HOME}/build_java_commons.xml"/>
+
+	
+	<!-- ================================= 
+	    target: build Gencore backend service      
+	  ================================= -->
+	<target name="install" depends="init_build,build_java_project" description="--> Build backend service"/>
+
+	 
+	<!--	<import file="${env.GENTOOLS_HOME}/build_db.xml"/>
+	
+	<target name="install" depends="init" description=" Compile backend service">
+		<antcall target="build_java_project"  >
+			<param name="module" value="${ivy.module}"/>
+			<param name="version" value="${project.version}"/>
+		</antcall>
+	</target>
+	
+	<target name="install-env" description=" Installation des .project">
+		<antcall target="eclipse:install-project"> 
+			<param name="svn.project.name" value="Gencore_backend_service"/> 
+			<param name="type" value="java_project"/> 
+	   </antcall>
+	</target>
+	
+	<target name="create-db-test" description=" Create test database">
+		
+		<property file="./test/com/gencore/test/resources/test.properties"/>
+		<antcall target="create-schema">
+			<param name="url" value="${jdbc.url}"/>
+			<param name="userid" value="${jdbc.username}"/>
+			<param name="password" value="${jdbc.password}"/>
+			<param name="src" value="${script.schema.src}"/>
+			<param name="driver" value="${jdbc.driverClassName}"/>
+		</antcall>		
+	</target> -->
+	
+	<target name="xjc" depends="init_compile_classpath" description="-> Generate Jaxb Entity">
+		 <antcall target="jaxb:xjc">
+			<param name="schema.dir" value="src/main/resources/com/gencore/backend/resources/ws/schema"/>
+			<param name="root.dest.dir" value="src/main/java"/>
+			<param name="package" value="com.gencore.backend.java.ws.jaxb"/>
+		 	<param name="dest.dir" value="src/main/java/com/gencore/backend/java/ws/jaxb"/>
+		 </antcall>
+	</target>
+	
+
+
+	
+
+</project>

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring
+END
+spring-conf-flex-services.xml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/spring-conf-flex-services.xml
+END
+spring-conf-service.xml
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/spring-conf-service.xml
+END
+spring-conf-hibernate.xml
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/spring-conf-hibernate.xml
+END
+spring-conf-dao.xml
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/spring-conf-dao.xml
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/applicationContext.xml
+END
+spring-conf-security.xml
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/spring-conf-security.xml
+END
+spring-conf-ws.xml
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/spring-conf-ws.xml
+END
+spring-conf-job.xml
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/spring-conf-job.xml
+END
+spring-conf-properties.xml
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/resources/com/gencore/backend/resources/spring/spring-conf-properties.xml
+END

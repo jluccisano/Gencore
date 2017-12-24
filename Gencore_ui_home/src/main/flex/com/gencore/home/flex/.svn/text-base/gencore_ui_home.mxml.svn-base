@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" 
+		   layout="vertical"
+		   width="100%" height="100%" 
+		   xmlns:facade="org.lucciframework.luccimvc.facade.*" 
+		   xmlns:business="org.lucciframework.luccimvc.business.*" 
+		   xmlns:command="org.lucciframework.luccimvc.controller.command.*" 
+		   xmlns:mediator="org.lucciframework.luccimvc.view.mediator.*"
+		   xmlns:local="*" 
+		   xmlns:view="com.gencore.home.flex.view.*"
+		   horizontalAlign="center" >
+	
+	<fx:Metadata>
+		[ResourceBundle('gencore')]
+		[ResourceBundle('gencore_home')]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		
+		<!--<parsley:ContextBuilder>
+			<parsley:XmlConfig file="logConf.xml"/>		
+		</parsley:ContextBuilder>-->
+	
+		<facade:Facade facadeRef="homeFacade" debug="true">
+			
+			<!-- Business -->
+			<facade:services>
+				<business:RegisterService serviceClass="{HomeServices}"/>
+			</facade:services>
+			
+			<!-- Controller -->
+			<facade:commands>
+				
+				<command:RegisterCommand eventType="{TrackerEvent.GET_RUNS_OF_TODAY_EVENT}" commandClass="{GetCoursesOfTodayCommand}"/>
+				<command:RegisterCommand eventType="{TrackerEvent.GET_TOTAL_DISTANCE_EVENT}" commandClass="{GetTotalDistanceCommand}"/>
+			</facade:commands>
+			
+			<!-- View -->
+			<facade:mediators>
+				
+				<mediator:RegisterMediator mediatorName="trackerMediator" mediatorClass="{TrackerMediator}" />
+			</facade:mediators>
+			
+			
+		</facade:Facade>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.home.flex.business.HomeServices;
+			import com.gencore.home.flex.control.command.GetCoursesOfTodayCommand;
+			import com.gencore.home.flex.control.command.GetTotalDistanceCommand;
+			import com.gencore.home.flex.control.event.TrackerEvent;
+			import com.gencore.home.flex.view.mediator.TrackerMediator;
+			
+
+			
+			
+			
+
+		]]>
+	</fx:Script>
+	
+	
+	
+
+	<s:VGroup width="100%" height="100%" horizontalAlign="center">		
+		<view:ContentUI id="contentContainer" width="80%" height="100%"/>
+		<view:BottomBarUI id="bottomBar" width="100%" height="60" />
+	</s:VGroup>
+
+	
+</mx:Module>

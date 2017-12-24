@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%"
+			   xmlns:checkboxdatagrid="org.lucciframework.checkboxdatagrid.*" 
+			   xmlns:facade="org.lucciframework.luccimvc.facade.*"
+			   xmlns:business="org.lucciframework.luccimvc.business.*" 
+			   xmlns:command="org.lucciframework.luccimvc.controller.command.*"
+			   xmlns:mediator="org.lucciframework.luccimvc.view.mediator.*" 
+			   xmlns:mediator1="com.gencore.admin.flex.view.mediator.*" 
+			   xmlns:view="com.gencore.admin.flex.view.*">
+	<fx:Script>
+		<![CDATA[
+			import com.gencore.admin.flex.business.AdminServices;
+			import com.gencore.admin.flex.control.command.DeleteUsersCommand;
+			import com.gencore.admin.flex.control.command.GetUsersCommand;
+			import com.gencore.admin.flex.control.event.AdminEvent;
+			import com.gencore.admin.flex.view.mediator.AdminMediator;
+		]]>
+	</fx:Script>
+	 
+	
+	<fx:Metadata>
+		[ResourceBundle('gencore')]
+		[ResourceBundle('gencore_admin')]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<facade:Facade facadeRef="adminFacade">
+			
+			<!-- Business -->
+			<facade:services>
+				<business:RegisterService serviceClass="{AdminServices}"/>
+			</facade:services>
+			
+			<!-- Controller -->
+			<facade:commands>
+				<command:RegisterCommand eventType="{AdminEvent.GET_USERS_EVENT}"
+										 commandClass="{GetUsersCommand}"/>
+				<command:RegisterCommand eventType="{AdminEvent.DELETE_USERS_EVENT}"
+										 commandClass="{DeleteUsersCommand}"/>
+			</facade:commands>
+			
+			<!-- View -->
+			<facade:mediators>
+				<mediator:RegisterMediator mediatorName="adminMediator"
+										   mediatorClass="{AdminMediator}"/>
+			</facade:mediators>	
+		</facade:Facade>
+	</fx:Declarations> 
+	
+	<view:AdminUI width="100%" height="100%"/>
+	
+</mx:Module>

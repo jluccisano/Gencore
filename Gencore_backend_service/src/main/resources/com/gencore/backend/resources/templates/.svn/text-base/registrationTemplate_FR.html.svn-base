@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <script><endnote><head>
+<script></script>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>registrationTemplate</title>
+
+
+</head>
+
+
+<body>
+
+Bonjour ${user.firstName},<br>
+
+<br>
+
+Bienvenue et&nbsp;merci d'avoir choisit LucciTracker. 
+
+<br><br>
+
+Pour finaliser votre enregistrement, cliquez sur le lien ci-dessous et
+rendez-vous sur LucciTracker !<br>
+
+<a href="http://localhost:8080/Gencore_portal/ValidateNewAccountServlet?login=${user.login}&amp;email=${user.email}" target="_blank">http://gencore.dyndns-server.com/Gencore_portal/ValidateNewAccountServlet?login=${user.login}&amp;email=${user.email}</a><br>
+
+<br>Vous avez jusqu'à 30 jours pour valider votre compte.<br><br>
+
+Si vous rencontrez des probl&egrave;mes n'h&eacute;sitez pas
+&agrave; nous contacter &agrave; cette adresse
+<a href="mailto:$%7buser.email%7d=">admin@gencore.com</a><br>
+
+<br>
+
+<br>
+
+&nbsp;&nbsp;&nbsp; LucciTracker administrateur.<br>
+
+<br>
+
+<br>
+
+</body>
+</html>

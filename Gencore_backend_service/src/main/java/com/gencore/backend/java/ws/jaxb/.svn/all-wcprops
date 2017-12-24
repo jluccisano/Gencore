@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/GenerixCore/!svn/ver/276/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws/jaxb
+END
+CoordinateRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/GenerixCore/!svn/ver/276/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws/jaxb/CoordinateRequest.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/GenerixCore/!svn/ver/276/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws/jaxb/package-info.java
+END
+Coordinate.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/GenerixCore/!svn/ver/276/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws/jaxb/Coordinate.java
+END
+ObjectFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/GenerixCore/!svn/ver/276/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/ws/jaxb/ObjectFactory.java
+END

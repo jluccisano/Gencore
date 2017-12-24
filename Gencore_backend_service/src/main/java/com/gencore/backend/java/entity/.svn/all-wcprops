@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/entity
+END
+Device.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/GenerixCore/!svn/ver/347/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/entity/Device.java
+END
+UserProfile.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/entity/UserProfile.java
+END
+Course.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/entity/Course.java
+END
+UserRole.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/entity/UserRole.java
+END
+CourseType.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/GenerixCore/!svn/ver/387/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/entity/CourseType.java
+END
+GPSLocation.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/GenerixCore/!svn/ver/347/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/entity/GPSLocation.java
+END

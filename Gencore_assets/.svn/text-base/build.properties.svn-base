@@ -1,0 +1,34 @@
+# distribution metadata
+creator=Joseph LUCCISANO
+publisher=Gencore
+language=FR
+project.version=0.1
+project.name=
+gentools.home=${env.GENTOOLS_HOME}
+#Ivy properties
+ivy.organisation=com.gencore
+ivy.module=gencore_assets
+ivy.status=integration
+ivy.revision=${project_version}
+ivy.pubrevision=
+#Path where the .jar or .swc are compiled
+ivy.artifactspattern=build/bin-release/[artifact].[ext]
+
+#Path where dependencies are located
+ivy.retrieve.path=libs
+ivy.retrieve.flex.path=libs
+ivy.resolver=ivysvn_swc
+
+
+#Flex properties
+flex.src.dir=src
+flex.libs.dir=
+flex.locale.us=en_US
+flex.locale.dir=locale
+flex.locale.resourcebundle=i18n
+flex.output.module.name=gencore_assets
+
+
+
+
+

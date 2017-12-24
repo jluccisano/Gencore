@@ -1,0 +1,31 @@
+project.version=0.1
+root.package=com/gencore/login/flex
+test.root.package=com/gencore/login/test/flex
+ivy.status=integration
+ivy.organisation=com.gencore
+ivy.module=gencore_ui_login
+ivy.revision=${project_version}
+ivy.artifactspattern=build/bin-release/[artifact].[ext]
+ivy.pubrevision=${project_version}
+ivy.resolver=ivysvn_swc
+ivy.type=swf
+
+jar.dest.dir=build/bin-release
+java.dest.dir=${build.web.inf}/
+
+# distribution metadata
+creator=Joseph LUCCISANO
+publisher=Gencore
+language=FR
+
+ivy.retrieve.path=flex_libs
+ivy.retrieve.flex.path=flex_libs
+
+flex.src.dir=src
+flex.libs.dir=flex_libs
+flex.locale.us=en_US
+flex.locale.dir=locale
+
+
+
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" version="3">
+  <includeClasses>
+    <classEntry path="com.gencore.assets.ConstIcons"/>
+    <classEntry path="com.gencore.assets.ConstFonts"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="com/gencore/assets/images/valid.png" sourcePath="com/gencore/assets/images/valid.png"/>
+  </includeResources>
+  <namespaceManifests/>
+</flexLibProperties>

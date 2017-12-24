@@ -1,0 +1,25 @@
+#Put your dev database config
+jdbc.databaseName=gencore_db
+jdbc.url=jdbc:mysql://localhost:3306
+jdbc.username=root
+jdbc.password=password
+
+#Put the hibernate config for the dev
+hibernate.show_sql=true
+hibernate.format_sql=false
+hibernate.use_sql_comments=true
+hibernate.query.substitutions=true 1, false 0
+hibernate.default_batch_fetch_size=25
+hibernate.jdbc.fetch_size=25
+hibernate.jdbc.batch_size=10
+hibernate.generate_statistics=true
+hibernate.jdbc.batch_versioned_data=true
+hibernate.hbm2ddl.auto=
+hibernate.cache.use_second_level_cache=false
+
+#Mail
+mail.host=smtp.gmail.com
+mail.port=25
+mail.username=joseph.luccisano
+mail.password=malili011004
+

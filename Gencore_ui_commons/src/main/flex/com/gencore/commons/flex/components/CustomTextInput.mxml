@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TextInput xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 initialize="onInit(event)"
+		 focusIn="textinput1_focusInHandler(event)"
+		 focusOut="textinput1_focusOutHandler(event)"
+		 focusEnabled="true"
+		 text.STATE_VIEW="{defaultText}"
+		 text.STATE_EDIT=""
+		 color.STATE_VIEW="0xC8BBBE"
+		 color.STATE_EDIT="black"
+		 displayAsPassword.STATE_VIEW="false">
+	
+	<fx:Declarations>
+		
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			public var defaultText:String = "";
+			
+			protected function onInit(event:FlexEvent):void
+			{
+				this.currentState = "STATE_VIEW";
+			}
+
+			protected function textinput1_focusInHandler(event:FocusEvent):void
+			{
+				this.currentState = "STATE_EDIT";				
+			}
+			
+			protected function textinput1_focusOutHandler(event:FocusEvent):void
+			{				
+				if ( text == "" ) {
+					this.currentState = "STATE_VIEW";
+				} else {
+					this.currentState = "STATE_EDIT";
+				}			
+			}
+
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="STATE_EDIT"/>
+		<s:State name="STATE_VIEW"/>
+	</s:states>
+	
+</s:TextInput>

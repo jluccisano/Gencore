@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<componentPackage xmlns="http://gencore.com/0.1">
+    <component id="Facade" class="org.lucciframework.facade.Facade"/>
+</componentPackage>

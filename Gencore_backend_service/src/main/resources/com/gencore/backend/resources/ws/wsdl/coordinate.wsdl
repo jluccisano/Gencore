@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:sch="http://gencore.com/ws/schema/coordinate/0.1/" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:tns="http://gencore.com/ws/schema/coordinate/0.1/" 
+ targetNamespace="http://gencore.com/ws/schema/coordinate/0.1/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://gencore.com/ws/schema/coordinate/0.1/" xmlns:tns="http://gencore.com/ws/schema/coordinate/0.1/">
+
+    <annotation xmlns="http://www.w3.org/2001/XMLSchema">
+            <documentation xmlns="http://www.w3.org/2001/XMLSchema">Schema of the SOAP message send coordinate</documentation>
+    </annotation>
+
+     <complexType name="Coordinate" xmlns="http://www.w3.org/2001/XMLSchema">
+        <annotation xmlns="http://www.w3.org/2001/XMLSchema">
+            <documentation xmlns="http://www.w3.org/2001/XMLSchema">Coordinate Bean definition</documentation>
+        </annotation>
+        <sequence xmlns="http://www.w3.org/2001/XMLSchema">
+             <element name="lattitude" type="double" xmlns="http://www.w3.org/2001/XMLSchema"/>
+             <element name="longitude" type="double" xmlns="http://www.w3.org/2001/XMLSchema"/>
+             <element name="altitude" type="float" xmlns="http://www.w3.org/2001/XMLSchema"/>
+             <element name="timestamp" type="long" xmlns="http://www.w3.org/2001/XMLSchema"/>
+             <element name="imei" type="string" xmlns="http://www.w3.org/2001/XMLSchema"/>
+             <element name="itinaryName" type="string" xmlns="http://www.w3.org/2001/XMLSchema"/>
+        </sequence>
+    </complexType>
+
+    <element name="coordinateRequest" xmlns="http://www.w3.org/2001/XMLSchema">
+        <annotation xmlns="http://www.w3.org/2001/XMLSchema">
+            <documentation xmlns="http://www.w3.org/2001/XMLSchema"> coordinate request </documentation>
+        </annotation>
+
+        <complexType xmlns="http://www.w3.org/2001/XMLSchema">
+            <annotation xmlns="http://www.w3.org/2001/XMLSchema">
+                <documentation xmlns="http://www.w3.org/2001/XMLSchema">The request for send GPS Localization</documentation>
+            </annotation>
+            <sequence xmlns="http://www.w3.org/2001/XMLSchema">
+                <element name="coordinate" type="tns:Coordinate" xmlns="http://www.w3.org/2001/XMLSchema"/>
+            </sequence>
+        </complexType>
+        </element>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="coordinateRequest">
+    <wsdl:part element="tns:coordinateRequest" name="coordinateRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="coordinate">
+    <wsdl:operation name="coordinate">
+      <wsdl:input message="tns:coordinateRequest" name="coordinateRequest">
+    </wsdl:input>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="coordinateSoap11" type="tns:coordinate">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="coordinate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="coordinateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="coordinateService">
+    <wsdl:port binding="tns:coordinateSoap11" name="coordinateSoap11">
+      <soap:address location="http://localhost:8080/Gencore_portal/ws/coordinate"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

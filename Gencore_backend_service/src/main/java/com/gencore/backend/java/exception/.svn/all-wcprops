@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/exception
+END
+AttributeAlreadyExistException.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/exception/AttributeAlreadyExistException.java
+END
+FlexExceptionTranslator.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/exception/FlexExceptionTranslator.java
+END
+IllegalPasswordException.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/exception/IllegalPasswordException.java
+END
+FlexExceptionInterceptor.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/exception/FlexExceptionInterceptor.java
+END
+FlexServiceException.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/GenerixCore/!svn/ver/247/trunk/Gencore_backend_service/src/main/java/com/gencore/backend/java/exception/FlexServiceException.java
+END

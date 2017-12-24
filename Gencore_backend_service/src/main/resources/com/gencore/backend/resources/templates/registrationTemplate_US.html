@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <script><endnote><head>
+<script></script>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>registrationTemplate</title>
+
+
+</head>
+
+
+<body>
+
+Bonjour ${user.firstName},<br>
+
+<br>
+
+Bienvenue et&nbsp;merci d'avoir choisit Simba. Nous vous informons
+&nbsp;que votre compte a bien &eacute;t&eacute;
+enregistr&eacute; et<br>
+
+vous trouverez ci-dessous vos param&egrave;tres de connexion.<br>
+
+<br>
+
+login : <span style="font-weight: bold;">${user.login}</span>&nbsp;&nbsp;&nbsp;
+<br>
+
+password : <span style="font-weight: bold;">${password}</span><br>
+
+<br>
+
+Ces param&egrave;tres pourront &ecirc;tre modifi&eacute;
+lors de votre premi&egrave;re connexion. Ces param&egrave;tres
+sont personnels<br>
+
+ne les divilgu&eacute;s &agrave; personne.<br>
+
+<br>
+
+Pour finaliser votre enregistrement, cliquez sur le lien ci-dessous et
+rendez-vous sur Simba !<br>
+
+<a href="http://localhost:8400/Simba/ValidateNewAccountServlet?login=${user.login}&amp;password=${user.password}" target="_blank">http://localhost:8400/Simba/ValidateNewAccountServlet?login=${user.login}&amp;password=${password}</a><br>
+
+<br>
+
+Si vous rencontrez des probl&egrave;mes n'h&eacute;sitez pas
+&agrave; nous contacter &agrave; cette adresse
+<a href="mailto:$%7buser.email%7d=">${user.email}</a><br>
+
+<br>
+
+<br>
+
+&nbsp;&nbsp;&nbsp; Simba Administrateur.<br>
+
+<br>
+
+<br>
+
+</body>
+</html>

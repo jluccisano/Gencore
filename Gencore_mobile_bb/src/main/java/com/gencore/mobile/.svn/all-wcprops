@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/GenerixCore/!svn/ver/371/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile
+END
+BBLogger.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/GenerixCore/!svn/ver/339/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/BBLogger.java
+END
+GPSTrackingConfigurationScreen.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/GenerixCore/!svn/ver/371/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/GPSTrackingConfigurationScreen.java
+END
+Main.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/GenerixCore/!svn/ver/339/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/Main.java
+END
+GPSTracking.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/GenerixCore/!svn/ver/339/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/GPSTracking.java
+END
+SQLiteManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/GenerixCore/!svn/ver/371/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/SQLiteManager.java
+END
+GPSTrackingControlScreen.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/GenerixCore/!svn/ver/371/trunk/Gencore_mobile_bb/src/main/java/com/gencore/mobile/GPSTrackingControlScreen.java
+END
